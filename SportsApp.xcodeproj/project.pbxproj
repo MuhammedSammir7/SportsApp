@@ -14,6 +14,7 @@
 		813561772C68FBFD00DA2BE6 /* SportsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 813561752C68FBFD00DA2BE6 /* SportsApp.xcdatamodeld */; };
 		813561792C68FBFF00DA2BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 813561782C68FBFF00DA2BE6 /* Assets.xcassets */; };
 		8135617C2C68FBFF00DA2BE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8135617A2C68FBFF00DA2BE6 /* LaunchScreen.storyboard */; };
+		813561862C690FB900DA2BE6 /* SportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813561852C690FB900DA2BE6 /* SportsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		813561782C68FBFF00DA2BE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8135617B2C68FBFF00DA2BE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8135617D2C68FBFF00DA2BE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813561852C690FB900DA2BE6 /* SportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				8135617A2C68FBFF00DA2BE6 /* LaunchScreen.storyboard */,
 				8135617D2C68FBFF00DA2BE6 /* Info.plist */,
 				813561752C68FBFD00DA2BE6 /* SportsApp.xcdatamodeld */,
+				813561852C690FB900DA2BE6 /* SportsCell.swift */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				813561712C68FBFD00DA2BE6 /* ViewController.swift in Sources */,
+				813561862C690FB900DA2BE6 /* SportsCell.swift in Sources */,
 				8135616D2C68FBFD00DA2BE6 /* AppDelegate.swift in Sources */,
 				813561772C68FBFD00DA2BE6 /* SportsApp.xcdatamodeld in Sources */,
 				8135616F2C68FBFD00DA2BE6 /* SceneDelegate.swift in Sources */,
