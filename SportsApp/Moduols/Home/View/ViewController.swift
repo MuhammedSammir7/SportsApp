@@ -42,23 +42,5 @@ extension ViewController : UICollectionViewDelegate,UICollectionViewDataSource, 
         0.1
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let numberOfItemsPerRow: CGFloat = 2
-//        let spacing: CGFloat = 0 // Adjust this if you want any spacing between cells
-//        let totalSpacing = spacing * (numberOfItemsPerRow - 1)
-//        let width = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
-//
-//        return CGSize(width: width, height: width) // Square cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 4 // Adjust this value to your liking, or set it to 0 for no space between rows
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 4 // Adjust this value to your liking, or set it to 0 for no space between items
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) // No padding around the section
-//    }
+
 }
