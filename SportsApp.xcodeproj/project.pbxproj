@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79F1833534BDED81E76BC751 /* Pods_SportsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15275E7005F01CDEBFD85706 /* Pods_SportsApp.framework */; };
 		8135616D2C68FBFD00DA2BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135616C2C68FBFD00DA2BE6 /* AppDelegate.swift */; };
 		8135616F2C68FBFD00DA2BE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135616E2C68FBFD00DA2BE6 /* SceneDelegate.swift */; };
 		813561712C68FBFD00DA2BE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813561702C68FBFD00DA2BE6 /* ViewController.swift */; };
@@ -15,9 +16,15 @@
 		813561792C68FBFF00DA2BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 813561782C68FBFF00DA2BE6 /* Assets.xcassets */; };
 		8135617C2C68FBFF00DA2BE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8135617A2C68FBFF00DA2BE6 /* LaunchScreen.storyboard */; };
 		813561862C690FB900DA2BE6 /* SportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813561852C690FB900DA2BE6 /* SportsCell.swift */; };
+		81F2209E2C6A91F6000CC84F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2209D2C6A91F6000CC84F /* Network.swift */; };
+		81F220A02C6A9208000CC84F /* URLManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2209F2C6A9208000CC84F /* URLManger.swift */; };
+		81F220A22C6A92AC000CC84F /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F220A12C6A92AC000CC84F /* NetworkProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15275E7005F01CDEBFD85706 /* Pods_SportsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0A1893F9AA25A7054BA66D /* Pods-SportsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsApp.debug.xcconfig"; path = "Target Support Files/Pods-SportsApp/Pods-SportsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		2ADAFB2EA137776E54800799 /* Pods-SportsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsApp.release.xcconfig"; path = "Target Support Files/Pods-SportsApp/Pods-SportsApp.release.xcconfig"; sourceTree = "<group>"; };
 		813561692C68FBFD00DA2BE6 /* SportsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8135616C2C68FBFD00DA2BE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8135616E2C68FBFD00DA2BE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +35,9 @@
 		8135617B2C68FBFF00DA2BE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8135617D2C68FBFF00DA2BE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		813561852C690FB900DA2BE6 /* SportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCell.swift; sourceTree = "<group>"; };
+		81F2209D2C6A91F6000CC84F /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		81F2209F2C6A9208000CC84F /* URLManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManger.swift; sourceTree = "<group>"; };
+		81F220A12C6A92AC000CC84F /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +45,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F1833534BDED81E76BC751 /* Pods_SportsApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49E5B66856356DA93BCEBD50 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A0A1893F9AA25A7054BA66D /* Pods-SportsApp.debug.xcconfig */,
+				2ADAFB2EA137776E54800799 /* Pods-SportsApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		813561602C68FBFD00DA2BE6 = {
 			isa = PBXGroup;
 			children = (
 				8135616B2C68FBFD00DA2BE6 /* SportsApp */,
 				8135616A2C68FBFD00DA2BE6 /* Products */,
+				49E5B66856356DA93BCEBD50 /* Pods */,
+				8F497E85923AAC8F1E0951C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +165,9 @@
 		81F220992C6A88F8000CC84F /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				81F220A12C6A92AC000CC84F /* NetworkProtocol.swift */,
+				81F2209D2C6A91F6000CC84F /* Network.swift */,
+				81F2209F2C6A9208000CC84F /* URLManger.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -169,6 +195,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8F497E85923AAC8F1E0951C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15275E7005F01CDEBFD85706 /* Pods_SportsApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -176,9 +210,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 813561802C68FBFF00DA2BE6 /* Build configuration list for PBXNativeTarget "SportsApp" */;
 			buildPhases = (
+				DB693E9F3A6C9C6A2FBB53E2 /* [CP] Check Pods Manifest.lock */,
 				813561652C68FBFD00DA2BE6 /* Sources */,
 				813561662C68FBFD00DA2BE6 /* Frameworks */,
 				813561672C68FBFD00DA2BE6 /* Resources */,
+				9913974EE92EC412AF13644C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,6 +271,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9913974EE92EC412AF13644C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportsApp/Pods-SportsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportsApp/Pods-SportsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportsApp/Pods-SportsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB693E9F3A6C9C6A2FBB53E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SportsApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		813561652C68FBFD00DA2BE6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -242,6 +320,9 @@
 			files = (
 				813561712C68FBFD00DA2BE6 /* ViewController.swift in Sources */,
 				813561862C690FB900DA2BE6 /* SportsCell.swift in Sources */,
+				81F220A02C6A9208000CC84F /* URLManger.swift in Sources */,
+				81F2209E2C6A91F6000CC84F /* Network.swift in Sources */,
+				81F220A22C6A92AC000CC84F /* NetworkProtocol.swift in Sources */,
 				8135616D2C68FBFD00DA2BE6 /* AppDelegate.swift in Sources */,
 				813561772C68FBFD00DA2BE6 /* SportsApp.xcdatamodeld in Sources */,
 				8135616F2C68FBFD00DA2BE6 /* SceneDelegate.swift in Sources */,
@@ -386,6 +467,7 @@
 		};
 		813561812C68FBFF00DA2BE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A0A1893F9AA25A7054BA66D /* Pods-SportsApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -413,6 +495,7 @@
 		};
 		813561822C68FBFF00DA2BE6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ADAFB2EA137776E54800799 /* Pods-SportsApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
