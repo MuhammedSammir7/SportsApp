@@ -58,4 +58,11 @@ extension LeaguesVC : UITableViewDataSource,UITableViewDelegate{
         cell.setCell(leagueName: selected.league_name, leagueImage: selected.league_logo ?? "default_logo")
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails")
+        
+        guard let vc = LeagueVC else {return}
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
