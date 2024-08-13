@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NetworkProtocol{
-    
+    func getData<T>(path: String, sport: String, handler: @escaping (T) -> Void) where T : Decodable
 }
