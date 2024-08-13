@@ -19,13 +19,27 @@ class LeaguesVC: UIViewController {
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
-        leagueViewModel = LeaguesViewModel(sprot: sport, network: Network())
-//        leagueViewModel.
-        leagueViewModel.ArrayToViewController = {
-            self.tableView.reloadData()
-        }
+        leagueViewModel = LeaguesViewModel(sport: sport, network: Network())
+
+        leagueViewModel.bindResultToViewController = {
+                    self.tableView.reloadData()
+                    // Print the count here to ensure it reflects after data is fetched
+           
+                    print("arr count: \(self.leagueViewModel.leagues.count)")
+                }
+        leagueViewModel.getData()
+        
+        //handling swiping the screen
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRight(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+
+        
     }
-    
+    // to dismiss the screen using swiper
+    @objc func handleSwipeRight(_ gesture: UISwipeGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
 
@@ -34,10 +48,14 @@ extension LeaguesVC : UITableViewDataSource,UITableViewDelegate{
         return leagueViewModel.leagues.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell") as! LeaguesCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesCell") as! LeaguesCell
 //        cell.leagueNameLbl.text = leagueViewModel.leagues[indexPath.row].league_name
-        let selected = leagueViewModel.leagues[indexPath.row]
-        cell.setCell(leagueName: selected.league_name, leagueTitle: selected.league_logo)
+        guard indexPath.row < leagueViewModel.leagues.count else {
+                    return cell
+                }
+                
+                let selected = leagueViewModel.leagues[indexPath.row]
+        cell.setCell(leagueName: selected.league_name, leagueImage: selected.league_logo ?? "default_logo")
         return cell
     }
 }

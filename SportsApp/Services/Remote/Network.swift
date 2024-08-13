@@ -8,23 +8,36 @@
 import Foundation
 import Alamofire
 class Network: NetworkProtocol{
-    var urlManager : URLManagerProtocol
-    init() {
-        self.urlManager = URLManager()
-    }
-    func getData<T>(path: String, sport: String, handler: @escaping (T) -> Void) where T : Decodable{
-        urlManager = URLManager()
+    var urlManager: URLManagerProtocol
         
-        AF.request(urlManager.setUrl(sport: sport, path: path)!, method: .get).responseDecodable(of: T.self) { response in
-            
-            switch response.result {
-            case .success(let data):
-                print("done")
-                handler(data)
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-            
+        init(urlManager: URLManagerProtocol = URLManager()) {
+            self.urlManager = urlManager
         }
+    
+    func getData<T>(path: String, sport: String, handler: @escaping (T) -> Void) where T : Decodable{
+        
+        guard let url = urlManager.setUrl(sport: sport, path: path) else {
+                    print("Error: Invalid URL")
+                    return
+                }
+        
+        AF.request(url, method: .get).responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        if let jsonString = String(data: data, encoding: .utf8) {
+                            print("Raw JSON Response: \(jsonString)")
+                        }
+                        
+                        do {
+                            let decodedData = try JSONDecoder().decode(T.self, from: data)
+                            handler(decodedData)
+                        } catch let decodingError {
+                            print("Error decoding data: \(decodingError)")
+                        }
+                        
+                    case .failure(let error):
+                        print("Error fetching data: \(error)")
+                    }
+                }
     }
 }

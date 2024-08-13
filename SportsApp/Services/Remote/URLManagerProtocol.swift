@@ -8,5 +8,5 @@
 import Foundation
 
 protocol URLManagerProtocol {
-    func setUrl(sport: String, path: String)-> URL?
+    func setUrl(sport: String, path: String) -> URL?
 }

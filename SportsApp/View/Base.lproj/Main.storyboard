@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xhm-C1-3aR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-9z-bUm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jkM-Rp-cCE">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4oC-ZU-xPL">
                                     <size key="itemSize" width="146" height="146"/>
@@ -77,14 +77,15 @@
                             <constraint firstItem="jkM-Rp-cCE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="i3Z-pK-l94"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sports" image="football.fill" catalog="system" id="EgV-hu-muS"/>
+                    <tabBarItem key="tabBarItem" title="Sports" image="football.fill" catalog="system" id="sIc-FI-6Bp"/>
+                    <navigationItem key="navigationItem" id="It8-za-GtL"/>
                     <connections>
                         <outlet property="collectionView" destination="jkM-Rp-cCE" id="OC0-4j-VMU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-463.35877862595419" y="706.33802816901414"/>
+            <point key="canvasLocation" x="260" y="661"/>
         </scene>
         <!--Favourite-->
         <scene sceneID="g28-Fs-PYT">
@@ -95,11 +96,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MKX-aD-kaK">
-                                <rect key="frame" x="0.0" y="110" width="393" height="659"/>
+                                <rect key="frame" x="0.0" y="154" width="393" height="615"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite Leagues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btx-YI-0jg">
-                                <rect key="frame" x="101" y="59.000000000000007" width="190" height="25.333333333333336"/>
+                                <rect key="frame" x="101" y="103" width="190" height="25.333333333333343"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -118,15 +119,16 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourite" image="heart.fill" catalog="system" id="cPe-ES-DUY"/>
+                    <navigationItem key="navigationItem" id="buL-bF-alx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HXS-tg-a4C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745.80152671755718" y="705.63380281690149"/>
+            <point key="canvasLocation" x="2599.2366412213742" y="705.63380281690149"/>
         </scene>
         <!--LeaguesVC-->
         <scene sceneID="MIy-Iy-qt5">
             <objects>
-                <viewController storyboardIdentifier="LeaguesVC" id="Yd3-9f-fiG" customClass="LeaguesVC" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeaguesVC" modalPresentationStyle="fullScreen" id="Yd3-9f-fiG" customClass="LeaguesVC" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qgC-Jb-zbM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,16 +144,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="155"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eug-ca-FxO">
-                                                    <rect key="frame" x="20" y="27" width="100" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="4ju-Ig-zre"/>
-                                                        <constraint firstAttribute="width" secondItem="eug-ca-FxO" secondAttribute="height" multiplier="1:1" id="ibc-em-kcd"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primer League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh5-SV-Duw">
-                                                    <rect key="frame" x="160" y="62" width="151" height="31"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primer League" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh5-SV-Duw">
+                                                    <rect key="frame" x="117" y="62" width="194" height="31"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -163,17 +158,23 @@
                                                         <action selector="LeagueVideoAction:" destination="YFR-Fb-Gbd" eventType="touchUpInside" id="UtY-Jz-kx8"/>
                                                     </connections>
                                                 </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eug-ca-FxO">
+                                                    <rect key="frame" x="20" y="40" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="wpt-Vw-f0b"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GkZ-1L-KEm" firstAttribute="top" secondItem="rb8-Ks-W7f" secondAttribute="topMargin" constant="49" id="1IX-wD-VG6"/>
                                                 <constraint firstItem="GkZ-1L-KEm" firstAttribute="trailing" secondItem="rb8-Ks-W7f" secondAttribute="trailingMargin" id="4wj-Ht-5fZ"/>
-                                                <constraint firstItem="Gh5-SV-Duw" firstAttribute="leading" secondItem="eug-ca-FxO" secondAttribute="trailing" constant="40" id="7ZR-88-YVR"/>
-                                                <constraint firstItem="eug-ca-FxO" firstAttribute="leading" secondItem="rb8-Ks-W7f" secondAttribute="leadingMargin" id="DLu-5g-PcF"/>
+                                                <constraint firstItem="eug-ca-FxO" firstAttribute="top" secondItem="rb8-Ks-W7f" secondAttribute="topMargin" constant="29" id="5H1-j0-SYQ"/>
+                                                <constraint firstItem="eug-ca-FxO" firstAttribute="leading" secondItem="rb8-Ks-W7f" secondAttribute="leadingMargin" id="EKY-VZ-Tyj"/>
                                                 <constraint firstItem="GkZ-1L-KEm" firstAttribute="leading" secondItem="Gh5-SV-Duw" secondAttribute="trailing" constant="18.670000000000002" id="Ife-vP-NCb"/>
                                                 <constraint firstItem="GkZ-1L-KEm" firstAttribute="height" secondItem="rb8-Ks-W7f" secondAttribute="height" multiplier="0.225806" id="Neq-hQ-ddT"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="eug-ca-FxO" secondAttribute="bottom" constant="17" id="Q54-My-Uxc"/>
-                                                <constraint firstItem="eug-ca-FxO" firstAttribute="top" secondItem="rb8-Ks-W7f" secondAttribute="topMargin" constant="16" id="QZi-Mp-0cn"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="GkZ-1L-KEm" secondAttribute="bottom" constant="49" id="c6h-Dy-4Ue"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="eug-ca-FxO" secondAttribute="bottom" constant="29" id="kYw-Iq-nWu"/>
+                                                <constraint firstItem="Gh5-SV-Duw" firstAttribute="leading" secondItem="eug-ca-FxO" secondAttribute="trailing" constant="22" id="my8-LP-f3C"/>
                                                 <constraint firstItem="Gh5-SV-Duw" firstAttribute="top" secondItem="rb8-Ks-W7f" secondAttribute="topMargin" constant="51" id="pVB-qf-piQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Gh5-SV-Duw" secondAttribute="bottom" constant="51" id="qhb-Ep-UBz"/>
                                                 <constraint firstItem="GkZ-1L-KEm" firstAttribute="width" secondItem="rb8-Ks-W7f" secondAttribute="width" multiplier="0.110263" id="vGt-gR-zmi"/>
@@ -202,15 +203,36 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSE-Ch-8uw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="YNe-8o-JTQ"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="1408.4507042253522"/>
+            <point key="canvasLocation" x="1440" y="1445"/>
+        </scene>
+        <!--Sports-->
+        <scene sceneID="JHx-VL-2al">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cfY-9z-bUm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sports" image="football.fill" catalog="system" id="EgV-hu-muS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BTr-1m-CEV">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KKp-Cr-Pjx" kind="relationship" relationship="rootViewController" id="HBX-NV-gkD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RE6-wa-HRu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1285" y="-853"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="cDm-BM-DHp">
+        <scene sceneID="M1d-oW-PBM">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xhm-C1-3aR" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KKp-Cr-Pjx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pOm-80-Bsc">
+                    <navigationItem key="navigationItem" id="oGk-RW-dgA"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Skc-wg-YxE">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -218,13 +240,13 @@
                         <color key="selectedImageTintColor" systemColor="systemRedColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="5xr-ez-ObS"/>
-                        <segue destination="Vzm-A4-9wW" kind="relationship" relationship="viewControllers" id="yvz-c9-8ae"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Kbr-1r-hsT"/>
+                        <segue destination="Vzm-A4-9wW" kind="relationship" relationship="viewControllers" id="7qK-8P-ZmT"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rbe-8m-Tf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFB-FV-Elv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1285" y="-165"/>
         </scene>
     </scenes>
     <resources>

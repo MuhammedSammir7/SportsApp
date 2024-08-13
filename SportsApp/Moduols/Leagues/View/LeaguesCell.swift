@@ -22,12 +22,13 @@ class LeaguesCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func setCell(leagueName: String, leagueTitle: String){
-        //imageView.kf.setImage(with: url, placeholder: placeholderImage)
-        let url = URL(string: leagueName)
-        self.leagueImage.kf.setImage(with: url, placeholder: UIImage(named: "football"))
-        self.leagueNameLbl.text = leagueName
-    }
+    func setCell(leagueName: String, leagueImage: String) {
+            // Safely handle the optional URL
+            let url = URL(string: leagueImage)
+            self.leagueImage.kf.setImage(with: url, placeholder: UIImage(named: "no-image"))
+        self.leagueImage.layer.cornerRadius = self.leagueImage.frame.width/2
+            self.leagueNameLbl.text = leagueName
+        }
     @IBAction func LeagueVideoAction(_ sender: Any) {
     }
     

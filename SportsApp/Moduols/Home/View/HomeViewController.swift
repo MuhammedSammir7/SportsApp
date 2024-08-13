@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import Network
+import Alamofire
 class HomeViewController: UIViewController {
-    
-    let monitor = NWPathMonitor()
-    var isConnected: Bool = false
+    let reachabilityManager = NetworkReachabilityManager()
+        var isConnected: Bool {
+            return reachabilityManager?.isReachable ?? false
+        }
+
     @IBOutlet weak var collectionView: UICollectionView!
     let sports = [Sports(name: "Football", image: "football"),
                   Sports(name: "Basketball", image: "basketBall"),
@@ -22,7 +24,16 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+        reachabilityManager?.startListening(onUpdatePerforming: { status in
+                    switch status {
+                    case .reachable(.ethernetOrWiFi), .reachable(.cellular):
+                        print("Network is reachable")
+                    case .notReachable:
+                        print("Network is not reachable")
+                    case .unknown:
+                        print("Network status is unknown")
+                    }
+                })
         
     }
 
@@ -52,37 +63,33 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        monitor.pathUpdateHandler = { path in
-                self.isConnected = (path.status == .satisfied)
-                    DispatchQueue.main.async {
-                        if self.isConnected {
-                            //  is online
-                            //Data from Api
-                            if let leagueVC = self.storyboard?.instantiateViewController(identifier: "LeaguesVC") as? LeaguesVC{
-                                leagueVC.sport = self.sports[indexPath.row].name.lowercased()
-                                self.navigationController?.pushViewController(leagueVC, animated: true)
-                            }
+        
+        print("hi from there")
+        
+        let leagueVC = self.storyboard?.instantiateViewController(identifier: "LeaguesVC") as? LeaguesVC
+        if let leagueViewController = leagueVC{
+            leagueViewController.sport = self.sports[indexPath.row].name.lowercased()
+            self.tabBarController?.navigationController?.pushViewController(leagueViewController, animated: true)
+            
+        }
+        
                                 
                             
-                        } else {
-                            //  is offline
-                            /*Data from coreData to the favuorite and no data in the sports view
-                            And an alert for the user shows him that there is no data or a photo
-                            And if the user wanted to open somthing from favuorite stop him with an alert tells him that there is no connection.
-                             */
-                            let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
-                            let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
-//                            let tryAgain = UIAlertAction(title: "Try again", style: .default) { action in
-//                                <#code#>
-//                            }
-                            alert.addAction(cancle)
-                            self.present(alert, animated: true)
-                        }
-                    }
+//                        } else {
+//                            //  is offline
+//                            /*Data from coreData to the favuorite and no data in the sports view
+//                            And an alert for the user shows him that there is no data or a photo
+//                            And if the user wanted to open somthing from favuorite stop him with an alert tells him that there is no connection.
+//                             */
+//                            let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
+//                            let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
+////                            let tryAgain = UIAlertAction(title: "Try again", style: .default) { action in
+////                                <#code#>
+////                            }
+//                            alert.addAction(cancle)
+//                            self.present(alert, animated: true)
+//                        }
                 }
-                
-                let queue = DispatchQueue(label: "NetworkMonitor")
-                monitor.start(queue: queue)
+            
     }
 
-}
