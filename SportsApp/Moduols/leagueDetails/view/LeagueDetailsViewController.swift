@@ -108,7 +108,28 @@ class LeagueDetailsViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        switch section {
+        case 0:
+            if viewModel?.upcomingEvents?.count ?? 10 < 10 {
+                return viewModel?.upcomingEvents?.count ?? 0
+            } else {
+                return 10
+            }
+        case 1:
+            if viewModel?.latestEvents?.count ?? 10 < 10 {
+                return viewModel?.upcomingEvents?.count ?? 0
+            } else {
+                return 10
+            }
+        case 2:
+            if viewModel?.LeagueTeams?.count ?? 20 < 20 {
+                return viewModel?.LeagueTeams?.count ?? 0
+            } else {
+                return 20
+            }
+        default:
+            return 10
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -116,7 +137,13 @@ class LeagueDetailsViewController: UICollectionViewController {
         if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCollectionViewCell
             
-            cell.teamImage.image = UIImage(named: "team1")
+            
+            if let teams = viewModel?.LeagueTeams {
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                cell.layer.isHidden = false
+            } else {
+                cell.layer.isHidden = true
+            }
             
             cell.layer.cornerRadius = cell.frame.width / 2
             cell.layer.masksToBounds = true
@@ -131,7 +158,7 @@ class LeagueDetailsViewController: UICollectionViewController {
         switch indexPath.section{
         case 0:
             
-            if let events = viewModel?.events {
+            if let events = viewModel?.upcomingEvents {
                 cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
                 
                 cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo!) , placeholder: UIImage(named: "no-image"))
@@ -139,6 +166,10 @@ class LeagueDetailsViewController: UICollectionViewController {
                 cell.eventName.text = events[indexPath.row].league_name
                 cell.dateLabel.text = events[indexPath.row].event_date
                 cell.timeLabel.text = events[indexPath.row].event_time
+                
+                cell.layer.isHidden = false
+            } else {
+                cell.layer.isHidden = true
             }
             
             cell.eventName.font = cell.eventName.font.withSize(18)
@@ -155,7 +186,7 @@ class LeagueDetailsViewController: UICollectionViewController {
             cell.vsImage.isHidden = false
             cell.backgoundImage.isHidden = false
         case 1:
-            if let events = viewModel?.events {
+            if let events = viewModel?.latestEvents {
                 cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
                 
                 cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo!) , placeholder: UIImage(named: "no-image"))
@@ -166,6 +197,10 @@ class LeagueDetailsViewController: UICollectionViewController {
                 
                 cell.homeScore.text = String((events[indexPath.row].event_final_result).prefix(1))
                 cell.awayScore.text = String((events[indexPath.row].event_final_result).suffix(1))
+                
+                cell.layer.isHidden = false
+            } else {
+                cell.layer.isHidden = true
             }
             
             cell.eventName.font = cell.eventName.font.withSize(16)

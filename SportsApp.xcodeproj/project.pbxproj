@@ -38,6 +38,7 @@
 		F410A5342C6C103600995359 /* TeamInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410A5312C6C103600995359 /* TeamInfoCollectionViewCell.swift */; };
 		F410A5362C6C1ED900995359 /* LeagueDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410A5352C6C1ED900995359 /* LeagueDetailsViewModel.swift */; };
 		F410A5382C6C261B00995359 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410A5372C6C261B00995359 /* Events.swift */; };
+		F410A57C2C6D152500995359 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410A57B2C6D152500995359 /* Teams.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		F410A5312C6C103600995359 /* TeamInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		F410A5352C6C1ED900995359 /* LeagueDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewModel.swift; sourceTree = "<group>"; };
 		F410A5372C6C261B00995359 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		F410A57B2C6D152500995359 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				81F220B02C6B7099000CC84F /* Leagues.swift */,
 				81F220B22C6B72C4000CC84F /* Responses.swift */,
 				F410A5372C6C261B00995359 /* Events.swift */,
+				F410A57B2C6D152500995359 /* Teams.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				81F220A22C6A92AC000CC84F /* NetworkProtocol.swift in Sources */,
 				F410A5362C6C1ED900995359 /* LeagueDetailsViewModel.swift in Sources */,
 				81F220A82C6AB962000CC84F /* URLManagerProtocol.swift in Sources */,
+				F410A57C2C6D152500995359 /* Teams.swift in Sources */,
 				81F220B12C6B7099000CC84F /* Leagues.swift in Sources */,
 				8135616D2C68FBFD00DA2BE6 /* AppDelegate.swift in Sources */,
 				F410A5342C6C103600995359 /* TeamInfoCollectionViewCell.swift in Sources */,
