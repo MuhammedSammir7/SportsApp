@@ -10,8 +10,11 @@ import Alamofire
 
 class LeagueDetailsViewModel {
     
+    let nwServic : NetworkProtocol
+    
     let sport : String
     let league_Key : Int
+    let league_name : String
     var bindResultToViewController: (() -> Void) = {}
     
     var upcomingEvents: [Events]? {
@@ -30,23 +33,27 @@ class LeagueDetailsViewModel {
         }
     }
     
-    init (sport: String, league: Int) {
+    init (nwServic: NetworkProtocol,sport: String, league_key: Int, league_name: String) {
+        self.nwServic = nwServic
         self.sport = sport
-        self.league_Key = league
+        self.league_Key = league_key
+        self.league_name = league_name
         getLeagueDetails()
     }
     
     func getLeagueDetails() {
-        getUpComingEvents { [weak self] events in
+        // UpComing
+        nwServic.getEvents(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] events in
             self?.upcomingEvents = events
         }
-        getLatestEvents { [weak self] events in
+        // Latest
+        nwServic.getEvents(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().currentDate) { [weak self] events in
             self?.latestEvents = events
         }
-        getLeagueTeams { [weak self] teams in
+        // Teams
+        nwServic.getLeagueTeams(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] teams in
             self?.LeagueTeams = teams
         }
-        
     }
     
     func getFormattedDates() -> (beginnigDate: String, endingDate: String, currentDate: String){
@@ -65,84 +72,6 @@ class LeagueDetailsViewModel {
         let formattedEndingDate = endingDate.flatMap { formatter.string(from: $0) }
         
         return (formattedBeginnigDate!, formattedEndingDate!, formattedCurrentDate!)
-    }
-    
-    func getUpComingEvents(handler: @escaping ([Events]?) -> Void) {
-        
-        let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
-        let sport = self.sport
-        let league_key = self.league_Key
-        let fromDate = getFormattedDates().currentDate
-        let toDate = getFormattedDates().endingDate
-        
-        let url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate)&to=\(toDate)&APIkey=\(apiKey)"
-        
-        AF.request(url, method: .get).responseDecodable(of: leagueEventsResponse.self) { response in
-                switch response.result {
-                case .success(let leagueEventsResponse):
-
-                    print("Fetched \(leagueEventsResponse.result.count) Events:")
-    
-                    handler(leagueEventsResponse.result)
-                    
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-    }
-    
-    func getLatestEvents(handler: @escaping ([Events]?) -> Void) {
-        
-        let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
-        let sport = self.sport
-        let league_key = self.league_Key
-        let fromDate = getFormattedDates().beginnigDate
-        let toDate = getFormattedDates().currentDate
-        
-        let url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate)&to=\(toDate)&APIkey=\(apiKey)"
-        
-        AF.request(url, method: .get).responseDecodable(of: leagueEventsResponse.self) { response in
-                switch response.result {
-                case .success(let leagueEventsResponse):
-
-                    print("Fetched \(leagueEventsResponse.result.count) Events:")
-    
-                    handler(leagueEventsResponse.result)
-                    
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-    }
-    
-    func getLeagueTeams(handler: @escaping ([Teams]?) -> Void) {
-        
-        let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
-        let sport = self.sport
-        let league_key = self.league_Key
-        let fromDate = getFormattedDates().beginnigDate
-        let toDate = getFormattedDates().endingDate
-        
-        let url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate)&to=\(toDate)&APIkey=\(apiKey)"
-        
-        AF.request(url, method: .get).responseDecodable(of: leagueTeamsResponse.self) { response in
-                switch response.result {
-                case .success(let leagueTeamsResponse):
-
-                    print("Fetched \(leagueTeamsResponse.result.count) Teams:")
-                    
-                    // To get distinct teams
-                    let teamsSet = Set(leagueTeamsResponse.result)
-                    print (teamsSet.count)
-                    print (teamsSet)
-                    
-                    handler(Array(teamsSet))
-                    //handler(leagueTeamsResponse.result)
-                    
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
     }
     
 }

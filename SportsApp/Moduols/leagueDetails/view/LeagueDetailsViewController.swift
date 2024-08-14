@@ -19,7 +19,7 @@ class LeagueDetailsViewController: UICollectionViewController {
             self.collectionView.reloadData()
         }
         
-        self.title = "League 1"
+        self.title = viewModel?.league_name
         
         let cellNib = UINib(nibName: "UpComingCollectionViewCell", bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: "UpComingCell")
