@@ -11,3 +11,7 @@ struct LeaguesResponse: Decodable {
     let result: [Leagues]
 }
 
+struct leagueEventsResponse : Decodable {
+    let result: [Events]
+}
+

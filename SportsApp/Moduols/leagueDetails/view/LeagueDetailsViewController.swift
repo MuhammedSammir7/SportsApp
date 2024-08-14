@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LeagueDetailsViewController: UICollectionViewController {
     
+    var viewModel : LeagueDetailsViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel?.bindResultToViewController = {
+            self.collectionView.reloadData()
+        }
         
         self.title = "League 1"
         
@@ -123,6 +130,13 @@ class LeagueDetailsViewController: UICollectionViewController {
         
         switch indexPath.section{
         case 0:
+            
+            if let events = viewModel?.events {
+                cell.HomeTeamImage.kf.setImage(with: URL(string: events[3].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                
+                cell.AwayTeamImage.kf.setImage(with: URL(string: events[3].away_team_logo!) , placeholder: UIImage(named: "no-image"))
+            }
+            
             cell.eventName.font = cell.eventName.font.withSize(18)
             cell.eventName.textColor = UIColor.white
             cell.dateLabel.font = cell.dateLabel.font.withSize(16)
