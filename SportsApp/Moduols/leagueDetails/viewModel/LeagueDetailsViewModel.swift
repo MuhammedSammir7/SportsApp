@@ -10,15 +10,18 @@ import Alamofire
 
 class LeagueDetailsViewModel {
     
+    let sport : String
     let league_Key : Int
     var bindResultToViewController: (() -> Void) = {}
     var events: [Events]? {
         didSet {
+            
             bindResultToViewController()
         }
     }
     
-    init (league: Int) {
+    init (sport: String, league: Int) {
+        self.sport = sport
         self.league_Key = league
         getLeagueDetails()
     }
@@ -29,19 +32,37 @@ class LeagueDetailsViewModel {
         }
     }
     
+    func getBeginningAndEndingDate() -> (String, String){
+        // Current Date
+        let calendar = Calendar.current
+        
+        let beginingDate = calendar.date(byAdding: .year, value: -1, to: Date())
+        let endingDate = calendar.date(byAdding: .year, value: 0, to: Date())
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let formattedBeginnigDate = beginingDate.flatMap { formatter.string(from: $0) }
+        let formattedEndingDate = endingDate.flatMap { formatter.string(from: $0) }
+        
+        return (formattedBeginnigDate!, formattedEndingDate!)
+    }
+    
     func getData(handler: @escaping ([Events]?) -> Void) {
         
-        let url = "https://apiv2.allsportsapi.com/football?met=Fixtures&leagueId=205&from=2023-01-18&to=2024-01-18&APIkey=1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
-//        let url = "https://apiv2.allsportsapi.com/football/?APIkey=1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403&met=Leagues"
+        let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
+        let sport = self.sport
+        let league_key = self.league_Key
+        let fromDate = getBeginningAndEndingDate().0
+        let toDate = getBeginningAndEndingDate().1
+        
+        let url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate)&to=\(toDate)&APIkey=\(apiKey)"
         
         AF.request(url, method: .get).responseDecodable(of: leagueEventsResponse.self) { response in
                 switch response.result {
                 case .success(let leagueEventsResponse):
-                    // Use the decoded posts array
+
                     print("Fetched \(leagueEventsResponse.result.count) Events:")
-//                    for event in leagueEventsResponse.result {
-//                        print("Post \(event.event_key): \(event.event_date)")
-//                    }
     
                     handler(leagueEventsResponse.result)
                     
@@ -50,4 +71,36 @@ class LeagueDetailsViewModel {
                 }
             }
     }
+    
+//    func getlatestEvents(handler: @escaping ([Events]?) -> Void) {
+//        
+//        let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
+//        let sport = self.sport
+//        let league_key = self.league_Key
+//        let fromDate = getBeginningAndEndingDate().0
+//        let toDate = getBeginningAndEndingDate().1
+//        
+//        // Current Date
+//        let calendar = Calendar.current
+//        
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        
+//        let formattedCurrentDate = calendar.date(byAdding: .year, value: 0, to: Date()).flatMap { formatter.string(from: $0) }!
+//
+//        let url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate)&to=\(formattedCurrentDate)&APIkey=\(apiKey)"
+//        
+//        AF.request(url, method: .get).responseDecodable(of: leagueEventsResponse.self) { response in
+//                switch response.result {
+//                case .success(let leagueEventsResponse):
+//
+//                    print("Fetched \(leagueEventsResponse.result.count) Events:")
+//    
+//                    handler(leagueEventsResponse.result)
+//                    
+//                case .failure(let error):
+//                    print("Error: \(error)")
+//                }
+//            }
+//    }
 }

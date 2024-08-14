@@ -132,9 +132,13 @@ class LeagueDetailsViewController: UICollectionViewController {
         case 0:
             
             if let events = viewModel?.events {
-                cell.HomeTeamImage.kf.setImage(with: URL(string: events[3].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
                 
-                cell.AwayTeamImage.kf.setImage(with: URL(string: events[3].away_team_logo!) , placeholder: UIImage(named: "no-image"))
+                cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo!) , placeholder: UIImage(named: "no-image"))
+                
+                cell.eventName.text = events[indexPath.row].league_name
+                cell.dateLabel.text = events[indexPath.row].event_date
+                cell.timeLabel.text = events[indexPath.row].event_time
             }
             
             cell.eventName.font = cell.eventName.font.withSize(18)
@@ -151,6 +155,19 @@ class LeagueDetailsViewController: UICollectionViewController {
             cell.vsImage.isHidden = false
             cell.backgoundImage.isHidden = false
         case 1:
+            if let events = viewModel?.events {
+                cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                
+                cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo!) , placeholder: UIImage(named: "no-image"))
+                
+                cell.eventName.text = events[indexPath.row].league_name
+                cell.dateLabel.text = events[indexPath.row].event_date
+                cell.timeLabel.text = events[indexPath.row].event_time
+                
+                cell.homeScore.text = String((events[indexPath.row].event_final_result).prefix(1))
+                cell.awayScore.text = String((events[indexPath.row].event_final_result).suffix(1))
+            }
+            
             cell.eventName.font = cell.eventName.font.withSize(16)
             cell.eventName.textColor = UIColor.darkGray
             cell.dateLabel.font = cell.dateLabel.font.withSize(14)
