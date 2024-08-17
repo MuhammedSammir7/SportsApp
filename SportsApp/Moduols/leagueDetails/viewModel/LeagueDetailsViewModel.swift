@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class LeagueDetailsViewModel {
     
@@ -44,6 +43,7 @@ class LeagueDetailsViewModel {
     func getLeagueDetails() {
         // UpComing
         nwServic.getEvents(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] events in
+            print((events?.count)!)
             self?.upcomingEvents = events
         }
         // Latest
@@ -51,7 +51,7 @@ class LeagueDetailsViewModel {
             self?.latestEvents = events
         }
         // Teams
-        nwServic.getLeagueTeams(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] teams in
+        nwServic.getTeams(sport: self.sport, league_key: self.league_Key, team_key: nil, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().endingDate) { [weak self] teams in
             self?.LeagueTeams = teams
         }
     }
@@ -62,7 +62,7 @@ class LeagueDetailsViewModel {
         
         let beginingDate = calendar.date(byAdding: .year, value: -1, to: Date())
         let endingDate = calendar.date(byAdding: .year, value: 1, to: Date())
-        let currentDate = calendar.date(byAdding: .year, value: 0, to: Date())
+        let currentDate = calendar.date(byAdding: .day, value: -1, to: Date())
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

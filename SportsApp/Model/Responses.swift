@@ -19,3 +19,7 @@ struct leagueTeamsResponse : Decodable, Hashable {
     let result: [Teams]
 }
 
+struct TeamResponse : Decodable {
+    let result: [Teams2]
+}
+

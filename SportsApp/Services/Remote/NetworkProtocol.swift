@@ -12,5 +12,5 @@ protocol NetworkProtocol{
     
     func getEvents(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Events]?) -> Void)
     
-    func getLeagueTeams(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Teams]?) -> Void)
+    func getTeams(sport: String, league_key: Int?, team_key: Int?, fromDate: String?, toDate: String?, handler: @escaping ([Teams]?) -> Void)
 }
