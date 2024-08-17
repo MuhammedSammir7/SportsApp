@@ -6,13 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TeamDetailsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var viewModel : TeamDetailsViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Alahly"
+        viewModel?.bindResultToViewController = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        self.title = self.viewModel?.team_name
         
         let layout = UICollectionViewCompositionalLayout { indexPath, enviroment in
             
@@ -31,24 +38,8 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         
         collectionView.setCollectionViewLayout(layout, animated: true)
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-
-        // Do any additional setup after loading the view.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     func drawHeader(height: CGFloat) -> NSCollectionLayoutBoundarySupplementaryItem{
         let footerHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .absolute(height))
         
@@ -87,6 +78,7 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         case 1:
             sectionHeaderView.SectionHeaderLabel.isHidden = true
         case 2:
+            sectionHeaderView.SectionHeaderLabel.isHidden = false
             sectionHeaderView.SectionHeaderLabel.text = "Players"
         default:
             break
@@ -121,7 +113,7 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         case 1:
             return 1
         case 2:
-            return 10
+            return self.viewModel?.team?.first?.players?.count ?? 0
         default:
             return 1
         }
@@ -134,7 +126,7 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BadgeCell", for: indexPath) as! TeamBadgeCollectionViewCell
             
-            cell.teamBadgeImage.image = UIImage(named: "team1")
+            cell.teamBadgeImage.kf.setImage(with: URL(string: self.viewModel?.team?.first?.team_logo ?? "") , placeholder: UIImage(named: "no-image"))
             cell.teamStadiumImage.image = blurImage(image: UIImage(named: "stadium")!, radius: 2)
             return cell
         case 1:
@@ -145,49 +137,18 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamPlayerCell", for: indexPath) as! TeamPlayerCollectionViewCell
             
-            cell.teamPlayerImage.image = UIImage(named: "messi")
+            cell.teamPlayerImage.kf.setImage(with: URL(string: (viewModel?.team?.first?.players?[indexPath.row].player_image) ?? ""), placeholder: UIImage(named: "person"))
             cell.teamPlayerImage.backgroundColor = UIColor.lightGray
             cell.teamPlayerImage.layer.cornerRadius = cell.teamPlayerImage.frame.width / 2
             
-            cell.teamPlayerName.text = "Lionel Messi"
-            cell.TeamPlayerPosition.text = "RW"
+            cell.teamPlayerName.text = viewModel?.team?.first?.players?[indexPath.row].player_name ?? "Unknown"
+            cell.TeamPlayerPosition.text = viewModel?.team?.first?.players?[indexPath.row].player_type ?? "Unknown"
 
             return cell
         default:
             return collectionView.dequeueReusableCell(withReuseIdentifier: " ", for: indexPath)
         }
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     func blurImage(image: UIImage, radius: CGFloat) -> UIImage? {
         guard let ciImage = CIImage(image: image) else { return nil }

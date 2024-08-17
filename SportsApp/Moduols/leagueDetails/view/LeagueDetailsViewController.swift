@@ -12,10 +12,17 @@ class LeagueDetailsViewController: UICollectionViewController {
     
     var viewModel : LeagueDetailsViewModel?
     
+    let indicator = UIActivityIndicatorView(style: .large)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        indicator.center = view.center
+        indicator.startAnimating()
+        view.addSubview(indicator)
+        
         viewModel?.bindResultToViewController = {
+            self.indicator.stopAnimating()
             self.collectionView.reloadData()
         }
         
@@ -117,15 +124,15 @@ class LeagueDetailsViewController: UICollectionViewController {
             }
         case 1:
             if viewModel?.latestEvents?.count ?? 10 < 10 {
-                return viewModel?.upcomingEvents?.count ?? 0
+                return viewModel?.latestEvents?.count ?? 0
             } else {
                 return 10
             }
         case 2:
-            if viewModel?.LeagueTeams?.count ?? 20 < 20 {
+            if viewModel?.LeagueTeams?.count ?? 20 < 30 {
                 return viewModel?.LeagueTeams?.count ?? 0
             } else {
-                return 20
+                return 30
             }
         default:
             return 10
@@ -139,7 +146,7 @@ class LeagueDetailsViewController: UICollectionViewController {
             
             
             if let teams = viewModel?.LeagueTeams {
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].home_team_logo ?? ""), placeholder: UIImage(named: "no-image"))
                 cell.layer.isHidden = false
             } else {
                 cell.layer.isHidden = true
@@ -159,9 +166,9 @@ class LeagueDetailsViewController: UICollectionViewController {
         case 0:
             
             if let events = viewModel?.upcomingEvents {
-                cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? ""), placeholder: UIImage(named: "no-image"))
                 
-                cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo!) , placeholder: UIImage(named: "no-image"))
+                cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "") , placeholder: UIImage(named: "no-image"))
                 
                 cell.eventName.text = events[indexPath.row].league_name
                 cell.dateLabel.text = events[indexPath.row].event_date
@@ -187,9 +194,9 @@ class LeagueDetailsViewController: UICollectionViewController {
             cell.backgoundImage.isHidden = false
         case 1:
             if let events = viewModel?.latestEvents {
-                cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo!), placeholder: UIImage(named: "no-image"))
+                cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? ""), placeholder: UIImage(named: "no-image"))
                 
-                cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo!) , placeholder: UIImage(named: "no-image"))
+                cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "") , placeholder: UIImage(named: "no-image"))
                 
                 cell.eventName.text = events[indexPath.row].league_name
                 cell.dateLabel.text = events[indexPath.row].event_date
@@ -230,9 +237,10 @@ class LeagueDetailsViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            let teamDetailsVC = storyboard?.instantiateViewController(withIdentifier: "teamDetails")
-            guard let vc = teamDetailsVC else {return}
-                navigationController?.pushViewController(vc, animated: true)
+            let teamDetailsVC = storyboard?.instantiateViewController(withIdentifier: "teamDetails") as! TeamDetailsCollectionViewController
+            
+            teamDetailsVC.viewModel = TeamDetailsViewModel(nwServic: Network(), sport: viewModel!.sport, team_key: (viewModel?.LeagueTeams![indexPath.row].home_team_key)!, team_name: (viewModel?.LeagueTeams![indexPath.row].event_home_team)!)
+            navigationController?.pushViewController(teamDetailsVC, animated: true)
         }
     }
 
