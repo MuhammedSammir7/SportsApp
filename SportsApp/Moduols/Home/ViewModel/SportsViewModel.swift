@@ -8,5 +8,8 @@
 import Foundation
 
 class SportsViewModel{
-    
+    let sports = [Sports(name: "Football", image: "football"),
+                  Sports(name: "Basketball", image: "basketBall"),
+                  Sports(name: "Cricket", image: "cricket"),
+                  Sports(name: "Tennis", image: "tennis")]
 }

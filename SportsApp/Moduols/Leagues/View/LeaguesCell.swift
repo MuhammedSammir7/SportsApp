@@ -9,9 +9,8 @@ import UIKit
 import Kingfisher
 class LeaguesCell: UITableViewCell {
 
-    @IBOutlet weak var leagueBtn: UIButton!
-    @IBOutlet weak var leagueNameLbl: UILabel!
-    @IBOutlet weak var leagueImage: UIImageView!
+    @IBOutlet weak var LeagueImage: UIImageView!
+    @IBOutlet weak var LeagueNameLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,11 +24,12 @@ class LeaguesCell: UITableViewCell {
     func setCell(leagueName: String, leagueImage: String) {
             // Safely handle the optional URL
             let url = URL(string: leagueImage)
-            self.leagueImage.kf.setImage(with: url, placeholder: UIImage(named: "no-image"))
-        self.leagueImage.layer.cornerRadius = self.leagueImage.frame.width/2
-            self.leagueNameLbl.text = leagueName
+            self.LeagueImage.kf.setImage(with: url, placeholder: UIImage(named: "no-image"))
+        self.LeagueImage.layer.cornerRadius = self.LeagueImage.frame.width/2
+            self.LeagueNameLbl.text = leagueName
         }
-    @IBAction func LeagueVideoAction(_ sender: Any) {
-    }
+
     
+    @IBAction func youtubeVideoBtn(_ sender: Any) {
+    }
 }

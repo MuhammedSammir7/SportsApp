@@ -8,16 +8,14 @@
 import UIKit
 import Alamofire
 class HomeViewController: UIViewController {
+    let viewModel = SportsViewModel()
     let reachabilityManager = NetworkReachabilityManager()
         var isConnected: Bool {
             return reachabilityManager?.isReachable ?? false
         }
 
     @IBOutlet weak var collectionView: UICollectionView!
-    let sports = [Sports(name: "Football", image: "football"),
-                  Sports(name: "Basketball", image: "basketBall"),
-                  Sports(name: "Cricket", image: "cricket"),
-                  Sports(name: "Tennis", image: "tennis")]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +28,10 @@ class HomeViewController: UIViewController {
                         print("Network is reachable")
                     case .notReachable:
                         print("Network is not reachable")
+                        let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
+                        let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
+                        alert.addAction(cancle)
+                        self.present(alert, animated: true)
                     case .unknown:
                         print("Network status is unknown")
                     }
@@ -42,12 +44,12 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sports.count
+        viewModel.sports.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sportCell", for: indexPath) as! SportsCell
-        cell.sportName.text = sports[indexPath.row].name
-        cell.sportImage.image = UIImage(named: sports[indexPath.row].image) 
+        cell.sportName.text = viewModel.sports[indexPath.row].name
+        cell.sportImage.image = UIImage(named: viewModel.sports[indexPath.row].image)
         
         return cell
     }
@@ -63,12 +65,11 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print("hi from there")
-        
-        let leagueVC = self.storyboard?.instantiateViewController(identifier: "LeaguesVC") as? LeaguesVC
+                
+        let leagueVC = self.storyboard?.instantiateViewController(identifier: "FavuoriteVC") as? FavuoriteVC
         if let leagueViewController = leagueVC{
-            leagueViewController.sport = self.sports[indexPath.row].name.lowercased()
+            leagueViewController.sport = self.viewModel.sports[indexPath.row].name.lowercased()
+            leagueVC?.isFavuorite = false
             self.tabBarController?.navigationController?.pushViewController(leagueViewController, animated: true)
             
         }
