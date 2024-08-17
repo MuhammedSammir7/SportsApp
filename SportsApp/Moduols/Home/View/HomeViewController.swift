@@ -69,7 +69,7 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
         let leagueVC = self.storyboard?.instantiateViewController(identifier: "FavuoriteVC") as? FavuoriteVC
         if let leagueViewController = leagueVC{
             leagueViewController.sport = self.viewModel.sports[indexPath.row].name.lowercased()
-            leagueVC?.isFavuorite = false
+            leagueViewController.isFavuorite = false
             self.tabBarController?.navigationController?.pushViewController(leagueViewController, animated: true)
             
         }

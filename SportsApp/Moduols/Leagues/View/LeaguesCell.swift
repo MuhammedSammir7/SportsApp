@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 class LeaguesCell: UITableViewCell {
 
+    static var makingAction: (() -> Void) = {}
     @IBOutlet weak var LeagueImage: UIImageView!
     @IBOutlet weak var LeagueNameLbl: UILabel!
     override func awakeFromNib() {
@@ -31,5 +32,6 @@ class LeaguesCell: UITableViewCell {
 
     
     @IBAction func youtubeVideoBtn(_ sender: Any) {
+        LeaguesCell.makingAction()
     }
 }
