@@ -8,20 +8,22 @@
 import UIKit
 import CoreData
 
-class PersistenceManager{
+class PersistenceManager: FavuoriteDBProtocol{
    // var context: NSManagedObjectContext!
    // var entity: NSEntityDescription!
-    var managedContext: NSManagedObjectContext
-    var leaguesL: [Leagues] = []
+    static let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    static var managedContext: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+    static var leaguesL: [Leagues] = []
+    
     static let shared = PersistenceManager()
     
-    private init(){
+    init(){
 //        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 //        entity = NSEntityDescription.entity(forEntityName: "FavouriteLeague", in: context)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        managedContext = appDelegate.persistentContainer.viewContext
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        managedContext = appDelegate.persistentContainer.viewContext
     }
-    func insertLeague(leagu: Leagues){
+   static func insertLeague(leagu: Leagues){
         let entity = NSEntityDescription.entity(forEntityName: "FavouriteLeague", in: managedContext)
         let league = NSManagedObject(entity: entity!, insertInto: managedContext)
         league.setValue(leagu.league_name, forKey: "league_name")
@@ -37,7 +39,7 @@ class PersistenceManager{
             print("\nerror in adding to favourite: \(error)\n")
         }
     }
-    func getDataFromLocal() -> [Leagues]{
+    static func getDataFromLocal() -> [Leagues]{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
         do{
             let leagues = try managedContext.fetch(fetchRequest)
@@ -52,7 +54,7 @@ class PersistenceManager{
         
         return leaguesL
     }
-    func getSpecificLeague(name: String,key: Int) -> Leagues?{
+    static func getSpecificLeague(name: String,key: Int) -> Leagues?{
         var leagueL: Leagues?
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
         
@@ -73,7 +75,7 @@ class PersistenceManager{
         
         return leagueL ?? nil
     }
-    func deleteFromLeagues(key: Int) {
+   static func deleteFromLeagues(key: Int) {
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
         
