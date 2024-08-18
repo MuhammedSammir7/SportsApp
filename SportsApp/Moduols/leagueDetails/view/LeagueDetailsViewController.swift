@@ -12,10 +12,17 @@ class LeagueDetailsViewController: UICollectionViewController {
     
     var viewModel : LeagueDetailsViewModel?
     
+    let indicator = UIActivityIndicatorView(style: .large)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        indicator.center = view.center
+        indicator.startAnimating()
+        view.addSubview(indicator)
+        
         viewModel?.bindResultToViewController = {
+            self.indicator.stopAnimating()
             self.collectionView.reloadData()
         }
         

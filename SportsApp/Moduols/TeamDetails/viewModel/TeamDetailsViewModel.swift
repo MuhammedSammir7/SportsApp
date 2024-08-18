@@ -6,16 +6,18 @@
 //
 
 import Foundation
+import Alamofire
 
 class TeamDetailsViewModel {
     
     let nwServic : NetworkProtocol
-    
+
     let sport : String
     let team_key : Int
     let team_name: String
     var bindResultToViewController: (() -> Void) = {}
     
+
     var team : [Teams]? {
         didSet {
             bindResultToViewController()
@@ -35,5 +37,4 @@ class TeamDetailsViewModel {
         self.team = team
         }
     }
-    
 }
