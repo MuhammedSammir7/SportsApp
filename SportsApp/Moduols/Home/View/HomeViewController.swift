@@ -22,16 +22,21 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
-        reachabilityManager?.startListening(onUpdatePerforming: { status in
+        reachabilityManager?.startListening(onUpdatePerforming: { [self] status in
                     switch status {
                     case .reachable(.ethernetOrWiFi), .reachable(.cellular):
                         print("Network is reachable")
+                        //uncomment this
+                        //ImageView.isHidden = true
                     case .notReachable:
                         print("Network is not reachable")
                         let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
-                        let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
-                        alert.addAction(cancle)
+                        let ok = UIAlertAction(title: "Ok", style: .cancel,handler: nil)
+                        alert.addAction(ok)
                         self.present(alert, animated: true)
+                        collectionView.isHidden = true
+                        //uncomment this
+                        //ImageView.isHidden = false
                     case .unknown:
                         print("Network status is unknown")
                     }
