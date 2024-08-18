@@ -29,8 +29,8 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vs 1" translatesAutoresizingMaskIntoConstraints="NO" id="HKi-QE-lVU">
                         <rect key="frame" x="119.33333333333333" y="47.333333333333329" width="42.333333333333329" height="45.333333333333329"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League Match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJc-cf-bwv">
-                        <rect key="frame" x="81.333333333333343" y="29.666666666666664" width="118.33333333333334" height="21.666666666666664"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League Match" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJc-cf-bwv">
+                        <rect key="frame" x="70.333333333333329" y="29.666666666666664" width="140.33333333333337" height="21.666666666666664"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -65,6 +65,18 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jxd-pY-FxL">
+                        <rect key="frame" x="11" y="107" width="84.333333333333329" height="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQz-9p-pSp">
+                        <rect key="frame" x="185.66666666666666" y="107" width="84.333333333333343" height="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -74,8 +86,11 @@
                 <constraint firstAttribute="trailing" secondItem="kqh-Kl-M7u" secondAttribute="trailing" constant="25" id="6Sf-c5-PE1"/>
                 <constraint firstItem="aGr-f7-LXN" firstAttribute="top" secondItem="61q-sg-Ku0" secondAttribute="bottom" id="7OF-4J-jd6"/>
                 <constraint firstItem="kqh-Kl-M7u" firstAttribute="height" secondItem="6Jf-Y5-q7e" secondAttribute="height" multiplier="0.5" id="820-n7-PtR"/>
+                <constraint firstItem="iQz-9p-pSp" firstAttribute="top" secondItem="kqh-Kl-M7u" secondAttribute="bottom" constant="2" id="9Cp-dA-aTM"/>
+                <constraint firstItem="Jxd-pY-FxL" firstAttribute="top" secondItem="D0I-rO-aiI" secondAttribute="bottom" constant="2" id="Azh-Xt-2V9"/>
                 <constraint firstItem="bXG-SB-inb" firstAttribute="centerY" secondItem="CVj-wa-7RB" secondAttribute="centerY" id="ClV-XS-18D"/>
                 <constraint firstItem="HKi-QE-lVU" firstAttribute="centerX" secondItem="6Jf-Y5-q7e" secondAttribute="centerX" id="CvN-xU-FnR"/>
+                <constraint firstItem="Jxd-pY-FxL" firstAttribute="width" secondItem="6Jf-Y5-q7e" secondAttribute="width" multiplier="0.3" id="Dtu-sE-7IF"/>
                 <constraint firstItem="kqh-Kl-M7u" firstAttribute="width" secondItem="6Jf-Y5-q7e" secondAttribute="width" multiplier="0.2" id="Ebf-ev-l03"/>
                 <constraint firstAttribute="trailing" secondItem="6Jf-Y5-q7e" secondAttribute="trailing" id="GEC-L3-okw"/>
                 <constraint firstItem="CVj-wa-7RB" firstAttribute="leading" secondItem="bXG-SB-inb" secondAttribute="trailing" constant="12" id="KB0-n7-MfA"/>
@@ -84,12 +99,16 @@
                 <constraint firstItem="D0I-rO-aiI" firstAttribute="height" secondItem="6Jf-Y5-q7e" secondAttribute="height" multiplier="0.5" id="YXa-Z2-LYb"/>
                 <constraint firstItem="CVj-wa-7RB" firstAttribute="centerY" secondItem="6Jf-Y5-q7e" secondAttribute="centerY" id="chh-ao-kXn"/>
                 <constraint firstItem="61q-sg-Ku0" firstAttribute="top" secondItem="HKi-QE-lVU" secondAttribute="bottom" constant="-4" id="djS-5r-aBX"/>
+                <constraint firstItem="Jxd-pY-FxL" firstAttribute="centerX" secondItem="D0I-rO-aiI" secondAttribute="centerX" id="f5a-Ap-Y16"/>
                 <constraint firstItem="kqh-Kl-M7u" firstAttribute="centerY" secondItem="6Jf-Y5-q7e" secondAttribute="centerY" id="gRE-h5-SDf"/>
+                <constraint firstItem="iQz-9p-pSp" firstAttribute="centerX" secondItem="kqh-Kl-M7u" secondAttribute="centerX" id="i8C-ap-dwM"/>
                 <constraint firstItem="D0I-rO-aiI" firstAttribute="centerY" secondItem="6Jf-Y5-q7e" secondAttribute="centerY" id="iZS-Id-gzB"/>
                 <constraint firstItem="6Jf-Y5-q7e" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jc2-Mf-v0Z"/>
                 <constraint firstItem="HKi-QE-lVU" firstAttribute="centerY" secondItem="6Jf-Y5-q7e" secondAttribute="centerY" id="k6T-D7-RsG"/>
+                <constraint firstItem="iQz-9p-pSp" firstAttribute="width" secondItem="6Jf-Y5-q7e" secondAttribute="width" multiplier="0.3" id="kLh-MX-G44"/>
                 <constraint firstItem="1bZ-8n-vqe" firstAttribute="leading" secondItem="CVj-wa-7RB" secondAttribute="trailing" constant="12" id="lMP-0Y-aAX"/>
                 <constraint firstAttribute="bottom" secondItem="6Jf-Y5-q7e" secondAttribute="bottom" id="nJk-Qb-2YY"/>
+                <constraint firstItem="YJc-cf-bwv" firstAttribute="width" secondItem="6Jf-Y5-q7e" secondAttribute="width" multiplier="0.5" id="p4p-70-UM1"/>
                 <constraint firstItem="D0I-rO-aiI" firstAttribute="width" secondItem="6Jf-Y5-q7e" secondAttribute="width" multiplier="0.2" id="q4r-Uy-pQP"/>
                 <constraint firstItem="aGr-f7-LXN" firstAttribute="centerX" secondItem="61q-sg-Ku0" secondAttribute="centerX" id="tzs-1j-Fgz"/>
                 <constraint firstItem="HKi-QE-lVU" firstAttribute="top" secondItem="YJc-cf-bwv" secondAttribute="bottom" constant="-4" id="u48-2H-Ee3"/>
@@ -103,10 +122,12 @@
                 <outlet property="AwayTeamImage" destination="kqh-Kl-M7u" id="tbB-Gw-Qvw"/>
                 <outlet property="HomeTeamImage" destination="D0I-rO-aiI" id="jZf-0M-1aI"/>
                 <outlet property="awayScore" destination="1bZ-8n-vqe" id="Jkv-mK-Nzq"/>
+                <outlet property="awayTeamName" destination="iQz-9p-pSp" id="w1L-9i-4E4"/>
                 <outlet property="backgoundImage" destination="6Jf-Y5-q7e" id="hmN-se-QZr"/>
                 <outlet property="dateLabel" destination="61q-sg-Ku0" id="qdb-SX-O9B"/>
                 <outlet property="eventName" destination="YJc-cf-bwv" id="Xcj-c6-aeR"/>
                 <outlet property="homeScore" destination="bXG-SB-inb" id="LwV-sr-hGQ"/>
+                <outlet property="homeTeamName" destination="Jxd-pY-FxL" id="UxB-0b-9M8"/>
                 <outlet property="scoreSeparator" destination="CVj-wa-7RB" id="czn-pm-P5q"/>
                 <outlet property="timeLabel" destination="aGr-f7-LXN" id="9QH-3u-8lc"/>
                 <outlet property="vsImage" destination="HKi-QE-lVU" id="eT3-w2-D40"/>

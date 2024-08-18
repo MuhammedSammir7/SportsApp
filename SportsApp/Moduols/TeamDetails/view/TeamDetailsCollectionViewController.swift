@@ -27,7 +27,7 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
             case 0:
                 return self.drawSection(groupWidth: 1, groupHeight: 300, leading: 0 , trailing: 0, headerHeight: 0.1, isScrollingHorizontally: false)
             case 1:
-                return self.drawSection(groupWidth: 1, groupHeight: 220, leading: 10 , trailing: 10, headerHeight: 0.1, isScrollingHorizontally: false)
+                return self.drawSection(groupWidth: 1, groupHeight: 150, leading: 10 , trailing: 10, headerHeight: 0.1, isScrollingHorizontally: false)
             case 2:
                 return self.drawSection(groupWidth: 1, groupHeight: 110, leading: 10 , trailing: 10, headerHeight: 60, isScrollingHorizontally: false)
             default:
@@ -132,7 +132,7 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamInfoCell", for: indexPath) as! TeamInfoCollectionViewCell
             
-            cell.aboutTextView.text = "Founded on 24 April 1907 by Omar Lotfy, Al Ahly has a record of 44 Egyptian Premier League titles, 39 Egypt Cup titles and 14 Egyptian Super Cups. Al Ahly is the most successful club in Africa."
+            cell.coachLabel.text = viewModel?.team?.first?.coaches?.first?.coach_name
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamPlayerCell", for: indexPath) as! TeamPlayerCollectionViewCell
@@ -143,6 +143,8 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
             
             cell.teamPlayerName.text = viewModel?.team?.first?.players?[indexPath.row].player_name ?? "Unknown"
             cell.TeamPlayerPosition.text = viewModel?.team?.first?.players?[indexPath.row].player_type ?? "Unknown"
+            
+            cell.TeamPlayerNumber.text = viewModel?.team?.first?.players?[indexPath.row].player_number ?? "N/A"
 
             return cell
         default:

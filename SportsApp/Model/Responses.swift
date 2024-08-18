@@ -16,10 +16,10 @@ struct leagueEventsResponse : Decodable {
 }
 
 struct leagueTeamsResponse : Decodable, Hashable {
-    let result: [Teams]
+    let result: [LeagueTeams]
 }
 
 struct TeamResponse : Decodable {
-    let result: [Teams2]
+    let result: [Teams]
 }
 

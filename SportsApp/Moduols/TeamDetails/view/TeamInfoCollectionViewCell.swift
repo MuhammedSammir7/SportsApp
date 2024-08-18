@@ -9,5 +9,7 @@ import UIKit
 
 class TeamInfoCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var aboutTextView: UITextView!
+    
+    @IBOutlet weak var coachLabel: UILabel!
+    
 }

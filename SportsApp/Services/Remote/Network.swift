@@ -66,20 +66,14 @@ class Network: NetworkProtocol{
             }
     }
     
-    func getTeams(sport: String, league_key: Int?, team_key: Int?, fromDate: String?, toDate: String?, handler: @escaping ([Teams]?) -> Void) {
+    func getLeagueTeams(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([LeagueTeams]?) -> Void) {
         
         let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
         let sport = sport
         let league_key = league_key
         let fromDate = fromDate
         let toDate = toDate
-        var url = ""
-        
-        if let league_key = league_key {
-           url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate!)&to=\(toDate!)&APIkey=\(apiKey)"
-        } else {
-            url = "https://apiv2.allsportsapi.com/\(sport)/?met=Teams&teamId=\(team_key!)&APIkey=\(apiKey)"
-        }
+        let url = "https://apiv2.allsportsapi.com/\(sport)?met=Fixtures&leagueId=\(league_key)&from=\(fromDate)&to=\(toDate)&APIkey=\(apiKey)"
         
         AF.request(url, method: .get).responseDecodable(of: leagueTeamsResponse.self) { response in
                 switch response.result {
@@ -92,6 +86,29 @@ class Network: NetworkProtocol{
                     print("Set teams: \(teamsSet.count)")
                     
                     handler(Array(teamsSet))
+                    
+                case .failure(let error):
+                    print("Error: \(error)")
+                    handler([])
+                }
+            }
+    }
+    
+    func getTeamDetails(sport: String, team_key: Int, handler: @escaping ([Teams]) -> Void) {
+        
+        let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
+        let sport = sport
+        let team_key = team_key
+        
+        let url = "https://apiv2.allsportsapi.com/\(sport)/?met=Teams&teamId=\(team_key)&APIkey=\(apiKey)"
+        
+        AF.request(url, method: .get).responseDecodable(of: TeamResponse.self) { response in
+                switch response.result {
+                case .success(let teamResponse):
+
+                    print("Fetched \(teamResponse.result.count) Team")
+                    
+                    handler(teamResponse.result)
                     
                 case .failure(let error):
                     print("Error: \(error)")

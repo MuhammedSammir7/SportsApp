@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-9z-bUm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-9z-bUm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -386,34 +387,31 @@
                                     <rect key="frame" x="0.0" y="0.0" width="378" height="184"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1C-4F-ZVJ">
-                                            <rect key="frame" x="35" y="79" width="61" height="26.333333333333329"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1C-4F-ZVJ">
+                                            <rect key="frame" x="35" y="78.666666666666671" width="65" height="27"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G9p-6a-NgU">
-                                            <rect key="frame" x="121" y="18.333333333333329" width="242" height="147.33333333333337"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0M-wm-OkA">
+                                            <rect key="frame" x="125" y="80" width="52" height="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="G9p-6a-NgU" secondAttribute="trailing" constant="15" id="BlJ-SN-ClQ"/>
                                         <constraint firstItem="Q1C-4F-ZVJ" firstAttribute="centerY" secondItem="zFH-ZL-slr" secondAttribute="centerY" id="Ese-dA-NLB"/>
+                                        <constraint firstItem="G0M-wm-OkA" firstAttribute="leading" secondItem="Q1C-4F-ZVJ" secondAttribute="trailing" constant="25" id="KYw-9x-DjC"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G0M-wm-OkA" secondAttribute="trailing" constant="20" symbolic="YES" id="Ney-2H-Yjr"/>
                                         <constraint firstItem="Q1C-4F-ZVJ" firstAttribute="leading" secondItem="zFH-ZL-slr" secondAttribute="leading" constant="35" id="ib1-Pw-LjR"/>
-                                        <constraint firstItem="G9p-6a-NgU" firstAttribute="centerY" secondItem="zFH-ZL-slr" secondAttribute="centerY" id="kMj-Mw-nys"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Q1C-4F-ZVJ" secondAttribute="trailing" constant="20" symbolic="YES" id="m1r-1I-8Vm"/>
-                                        <constraint firstItem="G9p-6a-NgU" firstAttribute="leading" secondItem="Q1C-4F-ZVJ" secondAttribute="trailing" constant="25" id="o4g-dI-PhY"/>
-                                        <constraint firstItem="G9p-6a-NgU" firstAttribute="height" secondItem="zFH-ZL-slr" secondAttribute="height" multiplier="0.8" id="xKy-9d-Iun"/>
+                                        <constraint firstItem="G0M-wm-OkA" firstAttribute="centerY" secondItem="Q1C-4F-ZVJ" secondAttribute="centerY" id="q6G-Xe-iL8"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="378" height="184"/>
                                 <connections>
-                                    <outlet property="aboutTextView" destination="G9p-6a-NgU" id="I4c-zh-RDb"/>
+                                    <outlet property="coachLabel" destination="G0M-wm-OkA" id="k5V-SB-EF2"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeamPlayerCell" id="2rm-rF-URq" customClass="TeamPlayerCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
@@ -438,6 +436,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHb-UI-IDt">
+                                            <rect key="frame" x="340.66666666666669" y="37" width="22.333333333333314" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="iYZ-VF-OP9" firstAttribute="leading" secondItem="lvq-HU-PiO" secondAttribute="leading" id="3qM-JB-n2p"/>
@@ -445,15 +449,18 @@
                                         <constraint firstItem="iYZ-VF-OP9" firstAttribute="top" secondItem="lvq-HU-PiO" secondAttribute="bottom" constant="2" id="DHB-Rf-DE6"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iYZ-VF-OP9" secondAttribute="trailing" constant="20" symbolic="YES" id="JIV-jo-faW"/>
                                         <constraint firstItem="fl0-6b-YSo" firstAttribute="leading" secondItem="k5u-Ux-uGX" secondAttribute="leading" constant="10" id="K3i-15-mRb"/>
+                                        <constraint firstItem="iHb-UI-IDt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lvq-HU-PiO" secondAttribute="trailing" constant="8" symbolic="YES" id="QK4-FZ-XIi"/>
                                         <constraint firstItem="lvq-HU-PiO" firstAttribute="top" secondItem="k5u-Ux-uGX" secondAttribute="top" constant="25" id="WQT-6a-LQn"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lvq-HU-PiO" secondAttribute="trailing" constant="20" symbolic="YES" id="ZiF-m6-GSV"/>
                                         <constraint firstItem="fl0-6b-YSo" firstAttribute="height" secondItem="k5u-Ux-uGX" secondAttribute="width" multiplier="0.2" id="gcb-gd-ylT"/>
                                         <constraint firstItem="fl0-6b-YSo" firstAttribute="width" secondItem="k5u-Ux-uGX" secondAttribute="width" multiplier="0.2" id="mUP-7n-XaY"/>
+                                        <constraint firstAttribute="trailing" secondItem="iHb-UI-IDt" secondAttribute="trailing" constant="15" id="qGo-ve-acF"/>
                                         <constraint firstItem="lvq-HU-PiO" firstAttribute="leading" secondItem="fl0-6b-YSo" secondAttribute="trailing" constant="32" id="tGU-Jw-2Bp"/>
+                                        <constraint firstItem="iHb-UI-IDt" firstAttribute="centerY" secondItem="fl0-6b-YSo" secondAttribute="centerY" id="uPl-GI-vW7"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="378" height="98"/>
                                 <connections>
+                                    <outlet property="TeamPlayerNumber" destination="iHb-UI-IDt" id="hFt-KS-t4Q"/>
                                     <outlet property="TeamPlayerPosition" destination="iYZ-VF-OP9" id="ugu-Bg-eQ1"/>
                                     <outlet property="teamPlayerImage" destination="fl0-6b-YSo" id="zbZ-y7-qcE"/>
                                     <outlet property="teamPlayerName" destination="lvq-HU-PiO" id="k9L-2f-gpY"/>

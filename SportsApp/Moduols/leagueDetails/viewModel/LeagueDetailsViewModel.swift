@@ -11,9 +11,11 @@ class LeagueDetailsViewModel {
     
     let nwServic : NetworkProtocol
     
+    let league : Leagues
+    var isFavoutite : Bool = false
+    
     let sport : String
-    let league_Key : Int
-    let league_name : String
+    
     var bindResultToViewController: (() -> Void) = {}
     
     var upcomingEvents: [Events]? {
@@ -26,32 +28,33 @@ class LeagueDetailsViewModel {
             bindResultToViewController()
         }
     }
-    var LeagueTeams: [Teams]? {
+    var LeagueTeams: [LeagueTeams]? {
         didSet {
             bindResultToViewController()
         }
     }
     
-    init (nwServic: NetworkProtocol,sport: String, league_key: Int, league_name: String) {
+    init (nwServic: NetworkProtocol,sport: String, league: Leagues) {
         self.nwServic = nwServic
         self.sport = sport
-        self.league_Key = league_key
-        self.league_name = league_name
+        self.league = league
         getLeagueDetails()
+        let favourites = PersistenceManager.getDataFromLocal()
+        let favouriteLeague = favourites.filter {$0.league_key == self.league.league_key}
+        if !(favouriteLeague.isEmpty) {self.isFavoutite = true}
     }
     
     func getLeagueDetails() {
         // UpComing
-        nwServic.getEvents(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] events in
-            print((events?.count)!)
+        nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] events in
             self?.upcomingEvents = events
         }
         // Latest
-        nwServic.getEvents(sport: self.sport, league_key: self.league_Key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().currentDate) { [weak self] events in
+        nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().currentDate) { [weak self] events in
             self?.latestEvents = events
         }
         // Teams
-        nwServic.getTeams(sport: self.sport, league_key: self.league_Key, team_key: nil, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().endingDate) { [weak self] teams in
+        nwServic.getLeagueTeams(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().endingDate) { [weak self] teams in
             self?.LeagueTeams = teams
         }
     }
@@ -72,6 +75,14 @@ class LeagueDetailsViewModel {
         let formattedEndingDate = endingDate.flatMap { formatter.string(from: $0) }
         
         return (formattedBeginnigDate!, formattedEndingDate!, formattedCurrentDate!)
+    }
+    
+    func addToFavourites() {
+        PersistenceManager.insertLeague(leagu: self.league)
+    }
+    
+    func removeFromFavourites() {
+        PersistenceManager.deleteFromLeagues(key: self.league.league_key)
     }
     
 }

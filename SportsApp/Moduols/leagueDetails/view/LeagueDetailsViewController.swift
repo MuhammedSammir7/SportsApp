@@ -12,34 +12,37 @@ class LeagueDetailsViewController: UICollectionViewController {
     
     var viewModel : LeagueDetailsViewModel?
     
-    let indicator = UIActivityIndicatorView(style: .large)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        indicator.center = view.center
-        indicator.startAnimating()
-        view.addSubview(indicator)
-        
         viewModel?.bindResultToViewController = {
-            self.indicator.stopAnimating()
             self.collectionView.reloadData()
         }
         
-        self.title = viewModel?.league_name
+        self.title = viewModel?.league.league_name
+        
+        if (viewModel?.isFavoutite)! {
+            favouriteButton.image = UIImage(systemName: "heart.fill")
+        }
         
         let cellNib = UINib(nibName: "UpComingCollectionViewCell", bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: "UpComingCell")
         
-        let layout = UICollectionViewCompositionalLayout { indexPath, enviroment in
+        let notFoundCellNib = UINib(nibName: "NotFoundCollectionViewCell", bundle: nil)
+        collectionView.register(notFoundCellNib, forCellWithReuseIdentifier: "notFoundCell")
+        
+        let loadingCellNib = UINib(nibName: "LoadingCollectionViewCell", bundle: nil)
+        collectionView.register(loadingCellNib, forCellWithReuseIdentifier: "loadingCell")
+        
+        let layout = UICollectionViewCompositionalLayout { [self] indexPath, enviroment in
             
             switch indexPath{
             case 0:
                 return self.drawSection(groupWidth: 1, groupHeight: 250, isScrollingHorizontally: true)
             case 1:
-                return self.drawSection(groupWidth: 1, groupHeight: 132, isScrollingHorizontally: false)
+                return self.drawSection(groupWidth: 1, groupHeight: 140, isScrollingHorizontally: false)
             case 2:
-                return self.drawSection(groupWidth: 0.2, groupHeight: 78, isScrollingHorizontally: true)
+                return self.drawSection(groupWidth: viewModel?.LeagueTeams?.count == 0 ? 1 : 0.2, groupHeight: 78, isScrollingHorizontally: true)
             default:
                 return self.drawSection(groupWidth: 1, groupHeight: 1, isScrollingHorizontally: false)
             }
@@ -53,10 +56,13 @@ class LeagueDetailsViewController: UICollectionViewController {
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
     
     @IBAction func addOrRemoveFromFavourites(_ sender: Any) {
-        if favouriteButton.image == UIImage(systemName: "heart") {
-            favouriteButton.image = UIImage(systemName: "heart.fill")
-        } else {
+        if (viewModel?.isFavoutite)! {
             favouriteButton.image = UIImage(systemName: "heart")
+            viewModel?.removeFromFavourites()
+            
+        } else {
+            favouriteButton.image = UIImage(systemName: "heart.fill")
+            viewModel?.addToFavourites()
         }
     }
     
@@ -118,19 +124,19 @@ class LeagueDetailsViewController: UICollectionViewController {
         switch section {
         case 0:
             if viewModel?.upcomingEvents?.count ?? 10 < 10 {
-                return viewModel?.upcomingEvents?.count ?? 0
+                return viewModel?.upcomingEvents?.count == 0 ? 1 : viewModel?.upcomingEvents?.count ?? 1
             } else {
                 return 10
             }
         case 1:
             if viewModel?.latestEvents?.count ?? 10 < 10 {
-                return viewModel?.latestEvents?.count ?? 0
+                return viewModel?.latestEvents?.count == 0 ? 1 : viewModel?.latestEvents?.count ?? 1
             } else {
                 return 10
             }
         case 2:
             if viewModel?.LeagueTeams?.count ?? 20 < 30 {
-                return viewModel?.LeagueTeams?.count ?? 0
+                return viewModel?.LeagueTeams?.count == 0 ? 1 : viewModel?.LeagueTeams?.count ?? 1
             } else {
                 return 30
             }
@@ -141,15 +147,24 @@ class LeagueDetailsViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let notFoundCell = collectionView.dequeueReusableCell(withReuseIdentifier: "notFoundCell", for: indexPath) as! NotFoundCollectionViewCell
+        let loadingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingCollectionViewCell
+        
         if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCollectionViewCell
             
             
             if let teams = viewModel?.LeagueTeams {
+                
+                if teams.isEmpty {
+                    notFoundCell.message.text = "No teams available"
+                    return notFoundCell
+                }
+                
                 cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].home_team_logo ?? ""), placeholder: UIImage(named: "no-image"))
                 cell.layer.isHidden = false
             } else {
-                cell.layer.isHidden = true
+                return loadingCell
             }
             
             cell.layer.cornerRadius = cell.frame.width / 2
@@ -166,6 +181,12 @@ class LeagueDetailsViewController: UICollectionViewController {
         case 0:
             
             if let events = viewModel?.upcomingEvents {
+                
+                if events.isEmpty {
+                    notFoundCell.message.text = "No Upcoming Events"
+                    return notFoundCell
+                }
+                
                 cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? ""), placeholder: UIImage(named: "no-image"))
                 
                 cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "") , placeholder: UIImage(named: "no-image"))
@@ -176,8 +197,11 @@ class LeagueDetailsViewController: UICollectionViewController {
                 
                 cell.layer.isHidden = false
             } else {
-                cell.layer.isHidden = true
+                return loadingCell
             }
+            
+            cell.homeTeamName.isHidden = true
+            cell.awayTeamName.isHidden = true
             
             cell.eventName.font = cell.eventName.font.withSize(18)
             cell.eventName.textColor = UIColor.white
@@ -194,9 +218,20 @@ class LeagueDetailsViewController: UICollectionViewController {
             cell.backgoundImage.isHidden = false
         case 1:
             if let events = viewModel?.latestEvents {
+                
+                if events.isEmpty {
+                    notFoundCell.message.text = "No Recent Events"
+                    return notFoundCell
+                }
+                
                 cell.HomeTeamImage.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? ""), placeholder: UIImage(named: "no-image"))
                 
                 cell.AwayTeamImage.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "") , placeholder: UIImage(named: "no-image"))
+                
+                cell.homeTeamName.text = events[indexPath.row].event_home_team
+                cell.awayTeamName.text = events[indexPath.row].event_away_team
+                cell.homeTeamName.isHidden = false
+                cell.awayTeamName.isHidden = false
                 
                 cell.eventName.text = events[indexPath.row].league_name
                 cell.dateLabel.text = events[indexPath.row].event_date
@@ -207,7 +242,7 @@ class LeagueDetailsViewController: UICollectionViewController {
                 
                 cell.layer.isHidden = false
             } else {
-                cell.layer.isHidden = true
+                return loadingCell
             }
             
             cell.eventName.font = cell.eventName.font.withSize(16)
@@ -231,6 +266,7 @@ class LeagueDetailsViewController: UICollectionViewController {
         cell.layer.masksToBounds = true
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 5.0
+        
 
         return cell
     }

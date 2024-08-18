@@ -12,6 +12,7 @@ struct Players: Codable, Hashable{
     var player_image : String?
     var player_name : String
     var player_type : String
+    var player_number : String
     
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -23,5 +24,6 @@ struct Players: Codable, Hashable{
             case player_image
             case player_name
             case player_type
+            case player_number
     }
 }

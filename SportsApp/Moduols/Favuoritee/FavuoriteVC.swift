@@ -76,11 +76,17 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
         if isFavuorite == false {
             let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
             
-            LeagueVC.viewModel = LeagueDetailsViewModel(sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row].league_key)
+            LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
             
             navigationController?.pushViewController(LeagueVC, animated: true)
         }else {
+            let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
             
+            let selected = favuoriteModel.favuoriteLeagues[indexPath.row]
+            
+            LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: "football", league: selected)
+            
+            navigationController?.pushViewController(LeagueVC, animated: true)
         }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

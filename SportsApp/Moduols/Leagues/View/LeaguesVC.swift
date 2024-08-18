@@ -62,7 +62,7 @@ extension LeaguesVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
         
-        LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(),sport: leagueViewModel.sport ?? "", league_key: leagueViewModel.leagues[indexPath.row].league_key, league_name: leagueViewModel.leagues[indexPath.row].league_name)
+        LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(),sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
         
         navigationController?.pushViewController(LeagueVC, animated: true)
     }
