@@ -84,7 +84,7 @@ class PersistenceManager: FavuoriteDBProtocol{
        // fetchRequest.predicate = myPredicate
         do{
             let leagues = try managedContext.fetch(fetchRequest)
-            print(leagues.count)
+            print("\n\nleagues.count = \(leagues.count)\n\n")
             if leagues.count > 0{
                 managedContext.delete(leagues[key])
                 try managedContext.save()

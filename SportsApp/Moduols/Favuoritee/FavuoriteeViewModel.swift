@@ -9,11 +9,7 @@ import Foundation
 
 class FavuoriteViewModel{
     var bindResultToViewController: (() -> Void) = {}
-    var favuoriteLeagues : [Leagues] = [] {
-        didSet {
-            bindResultToViewController()
-        }
-    }
+    var favuoriteLeagues : [Leagues] = []
    
     func getData(){
         favuoriteLeagues = PersistenceManager.getDataFromLocal()
