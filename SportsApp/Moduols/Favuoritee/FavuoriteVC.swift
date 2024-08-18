@@ -85,49 +85,51 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
             
             navigationController?.pushViewController(LeagueVC, animated: true)
         }else {
+            let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
             
-        guard reachabilityManager?.isReachable == true else {
-                    showNoConnectionAlert()
-                    return
-                }
-
-                if isFavuorite == false {
-                    let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-                    leagueVC.viewModel = LeagueDetailsViewModel(sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row].league_key)
-                    navigationController?.pushViewController(leagueVC, animated: true)
-                }else {
-            
-            let selected = favuoriteModel.favuoriteLeagues[indexPath.row]
-            
-            LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: "football", league: selected)
-            
-            navigationController?.pushViewController(LeagueVC, animated: true)
-        }
-    }
-    func showNoConnectionAlert() {
-        let alert = UIAlertController(title: "No Connection", message: "You need an internet connection to view league details.", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-        present(alert, animated: true)}
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "delete") { action, view, completionHandler in
-            let alert = UIAlertController(title: "delete", message: "Are you sure you want to delete this league?", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Yes", style: .destructive) { action in
-                self.favuoriteModel.favuoriteLeagues.remove(at: indexPath.row)
-                // call the delete function and pass the index to it to delete from the coreData
-                self.favuoriteModel.deleteLeague(index: indexPath.row)
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
-                completionHandler(true)
+            guard reachabilityManager?.isReachable == true else {
+                showNoConnectionAlert()
+                return
             }
-            let cancle = UIAlertAction(title: "Cancle", style: .cancel)
-            alert.addAction(yes)
-            alert.addAction(cancle)
-            self.present(alert, animated: true)
             
+            if isFavuorite == false {
+                let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+                leagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
+                navigationController?.pushViewController(leagueVC, animated: true)
+            }else {
+                
+                let selected = favuoriteModel.favuoriteLeagues[indexPath.row]
+                
+                leagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: "football", league: selected)
+                
+                navigationController?.pushViewController(leagueVC, animated: true)
+            }
         }
-        return UISwipeActionsConfiguration(actions: [delete])
+        func showNoConnectionAlert() {
+            let alert = UIAlertController(title: "No Connection", message: "You need an internet connection to view league details.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true)}
+        
+        func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let delete = UIContextualAction(style: .destructive, title: "delete") { action, view, completionHandler in
+                let alert = UIAlertController(title: "delete", message: "Are you sure you want to delete this league?", preferredStyle: .alert)
+                let yes = UIAlertAction(title: "Yes", style: .destructive) { action in
+                    self.favuoriteModel.favuoriteLeagues.remove(at: indexPath.row)
+                    // call the delete function and pass the index to it to delete from the coreData
+                    self.favuoriteModel.deleteLeague(index: indexPath.row)
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.endUpdates()
+                    completionHandler(true)
+                }
+                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
+                alert.addAction(yes)
+                alert.addAction(cancle)
+                self.present(alert, animated: true)
+                
+            }
+            return UISwipeActionsConfiguration(actions: [delete])
+        }
     }
 }
