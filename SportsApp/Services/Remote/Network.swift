@@ -54,8 +54,6 @@ class Network: NetworkProtocol{
         AF.request(url, method: .get).responseDecodable(of: leagueEventsResponse.self) { response in
                 switch response.result {
                 case .success(let leagueEventsResponse):
-
-                    print("Fetched \(leagueEventsResponse.result.count) Events:")
     
                     handler(leagueEventsResponse.result)
                     
@@ -78,14 +76,17 @@ class Network: NetworkProtocol{
         AF.request(url, method: .get).responseDecodable(of: leagueTeamsResponse.self) { response in
                 switch response.result {
                 case .success(let leagueTeamsResponse):
-
-                    print("Fetched \(leagueTeamsResponse.result.count) Teams:")
                     
                     // To get distinct teams
                     let teamsSet = Set(leagueTeamsResponse.result)
-                    print("Set teams: \(teamsSet.count)")
                     
-                    handler(Array(teamsSet))
+                    let uniqueTeams = teamsSet.reduce(into: [LeagueTeams]()) { result, team in
+                        if !result.contains(where: { $0.home_team_key == team.home_team_key }) {
+                            result.append(team)
+                        }
+                    }
+
+                    handler(uniqueTeams)
                     
                 case .failure(let error):
                     print("Error: \(error)")
@@ -106,8 +107,6 @@ class Network: NetworkProtocol{
                 switch response.result {
                 case .success(let teamResponse):
 
-                    print("Fetched \(teamResponse.result.count) Team")
-                    
                     handler(teamResponse.result)
                     
                 case .failure(let error):
