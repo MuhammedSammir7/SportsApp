@@ -78,33 +78,27 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isFavuorite == false {
-            let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-            
-            LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
-            
-            navigationController?.pushViewController(LeagueVC, animated: true)
-        }else {
-            let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-            
-            guard reachabilityManager?.isReachable == true else {
-                showNoConnectionAlert()
-                return
-            }
-            
-            if isFavuorite == false {
-                let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-                leagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
-                navigationController?.pushViewController(leagueVC, animated: true)
-            }else {
-                
-                let selected = favuoriteModel.favuoriteLeagues[indexPath.row]
-                
-                leagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: "football", league: selected)
-                
-                navigationController?.pushViewController(leagueVC, animated: true)
-            }
-        }
+        guard reachabilityManager?.isReachable == true else {
+                    showNoConnectionAlert()
+                    return
+                }
+
+                if isFavuorite == false {
+                    let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+                    
+                    LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
+                    
+                    navigationController?.pushViewController(LeagueVC, animated: true)
+                }else {
+                    let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+                    
+                    let selected = favuoriteModel.favuoriteLeagues[indexPath.row]
+                    
+                    leagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: "football", league: selected)
+                    
+                    navigationController?.pushViewController(leagueVC, animated: true)
+                }
+        
         func showNoConnectionAlert() {
             let alert = UIAlertController(title: "No Connection", message: "You need an internet connection to view league details.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
