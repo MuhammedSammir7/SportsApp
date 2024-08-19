@@ -9,6 +9,7 @@ import UIKit
 
 class UpComingCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var live: UILabel!
     @IBOutlet weak var awayTeamName: UILabel!
     @IBOutlet weak var homeTeamName: UILabel!
     @IBOutlet weak var awayScore: UILabel!

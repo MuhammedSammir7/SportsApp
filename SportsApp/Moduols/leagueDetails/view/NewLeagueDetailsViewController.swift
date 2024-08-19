@@ -222,6 +222,8 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
                 return loadingCell
             }
             
+            cell.live.isHidden = true
+            
             cell.homeTeamName.isHidden = true
             cell.awayTeamName.isHidden = true
             
@@ -261,6 +263,11 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
                 
                 cell.homeScore.text = String((events[indexPath.row].event_final_result).prefix(1))
                 cell.awayScore.text = String((events[indexPath.row].event_final_result).suffix(1))
+                
+                cell.live.isHidden = true
+                if events[indexPath.row].event_final_result == "-" {
+                    cell.live.isHidden = false
+                }
                 
                 cell.layer.isHidden = false
             } else {

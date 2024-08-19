@@ -47,8 +47,12 @@ class LeagueDetailsViewModel {
     
     func getLeagueDetails() {
         // UpComing
-        nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().currentDate, toDate: getFormattedDates().endingDate) { [weak self] events in
-            self?.upcomingEvents = events
+        nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().currentDatePluse, toDate: getFormattedDates().endingDate) { [weak self] events in
+            
+            var newEvents = events
+            newEvents?.sort{ (self?.getFormattedDates(dateSting: $0.event_date).eventDate)!  < (self?.getFormattedDates(dateSting: $1.event_date).eventDate)!}
+            
+            self?.upcomingEvents = newEvents
         }
         // Latest
         nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().currentDate) { [weak self] events in
@@ -60,22 +64,29 @@ class LeagueDetailsViewModel {
         }
     }
     
-    func getFormattedDates() -> (beginnigDate: String, endingDate: String, currentDate: String){
+    func getFormattedDates(dateSting: String? = nil) -> (beginnigDate: String, endingDate: String, currentDatePluse: String, currentDate: String, eventDate: Date?){
         // Current Date
         let calendar = Calendar.current
         
         let beginingDate = calendar.date(byAdding: .year, value: -1, to: Date())
         let endingDate = calendar.date(byAdding: .year, value: 1, to: Date())
-        let currentDate = calendar.date(byAdding: .day, value: -1, to: Date())
+        let currentDate = calendar.date(byAdding: .hour, value: 0, to: Date())
+        let currentDatePluse = calendar.date(byAdding: .hour, value: 3, to: Date())
+        
+        
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
+        var eventDate : Date? = nil
+        if let dateSting = dateSting {eventDate = formatter.date(from: dateSting)}
+        
+        let formattedCurrentDatePluse = currentDatePluse.flatMap { formatter.string(from: $0) }
         let formattedCurrentDate = currentDate.flatMap { formatter.string(from: $0) }
         let formattedBeginnigDate = beginingDate.flatMap { formatter.string(from: $0) }
         let formattedEndingDate = endingDate.flatMap { formatter.string(from: $0) }
         
-        return (formattedBeginnigDate!, formattedEndingDate!, formattedCurrentDate!)
+        return (formattedBeginnigDate!, formattedEndingDate!, formattedCurrentDatePluse!, formattedCurrentDate!, eventDate)
     }
     
     func addToFavourites() {

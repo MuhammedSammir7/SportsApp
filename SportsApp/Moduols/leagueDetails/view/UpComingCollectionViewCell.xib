@@ -77,10 +77,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔴" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5v-FN-3og">
+                        <rect key="frame" x="171" y="59" width="12" height="9.6666666666666714"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="p5v-FN-3og" firstAttribute="top" secondItem="1bZ-8n-vqe" secondAttribute="top" id="0wZ-mO-Nld"/>
                 <constraint firstItem="HKi-QE-lVU" firstAttribute="width" secondItem="D0I-rO-aiI" secondAttribute="width" multiplier="0.75" id="2Cg-Cx-14H"/>
                 <constraint firstItem="1bZ-8n-vqe" firstAttribute="centerY" secondItem="CVj-wa-7RB" secondAttribute="centerY" id="2ke-F1-ODa"/>
                 <constraint firstAttribute="trailing" secondItem="kqh-Kl-M7u" secondAttribute="trailing" constant="25" id="6Sf-c5-PE1"/>
@@ -99,6 +106,7 @@
                 <constraint firstItem="D0I-rO-aiI" firstAttribute="height" secondItem="6Jf-Y5-q7e" secondAttribute="height" multiplier="0.5" id="YXa-Z2-LYb"/>
                 <constraint firstItem="CVj-wa-7RB" firstAttribute="centerY" secondItem="6Jf-Y5-q7e" secondAttribute="centerY" id="chh-ao-kXn"/>
                 <constraint firstItem="61q-sg-Ku0" firstAttribute="top" secondItem="HKi-QE-lVU" secondAttribute="bottom" constant="-4" id="djS-5r-aBX"/>
+                <constraint firstItem="p5v-FN-3og" firstAttribute="leading" secondItem="1bZ-8n-vqe" secondAttribute="trailing" constant="5" id="e4g-3s-cmw"/>
                 <constraint firstItem="Jxd-pY-FxL" firstAttribute="centerX" secondItem="D0I-rO-aiI" secondAttribute="centerX" id="f5a-Ap-Y16"/>
                 <constraint firstItem="kqh-Kl-M7u" firstAttribute="centerY" secondItem="6Jf-Y5-q7e" secondAttribute="centerY" id="gRE-h5-SDf"/>
                 <constraint firstItem="iQz-9p-pSp" firstAttribute="centerX" secondItem="kqh-Kl-M7u" secondAttribute="centerX" id="i8C-ap-dwM"/>
@@ -128,6 +136,7 @@
                 <outlet property="eventName" destination="YJc-cf-bwv" id="Xcj-c6-aeR"/>
                 <outlet property="homeScore" destination="bXG-SB-inb" id="LwV-sr-hGQ"/>
                 <outlet property="homeTeamName" destination="Jxd-pY-FxL" id="UxB-0b-9M8"/>
+                <outlet property="live" destination="p5v-FN-3og" id="zdO-mW-rgi"/>
                 <outlet property="scoreSeparator" destination="CVj-wa-7RB" id="czn-pm-P5q"/>
                 <outlet property="timeLabel" destination="aGr-f7-LXN" id="9QH-3u-8lc"/>
                 <outlet property="vsImage" destination="HKi-QE-lVU" id="eT3-w2-D40"/>
