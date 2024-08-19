@@ -21,6 +21,7 @@ struct Events: Codable {
     var league_name : String
     var league_season : String
     var event_stadium : String
+    var event_ft_result : String
     
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -39,20 +40,21 @@ struct Events: Codable {
 //        event_stadium = try container.decode(String.self, forKey: .event_stadium)
 //    }
     
-    private enum CodingKeys: String, CodingKey {
-            case event_key
-            case event_date
-            case home_team_logo
-            case away_team_logo
-            case event_time
-            case home_team_key
-            case event_home_team
-            case away_team_key
-            case event_away_team
-            case event_final_result
-            case league_name
-            case league_season
-            case event_stadium
-        
-    }
+//    private enum CodingKeys: String, CodingKey {
+//            case event_key
+//            case event_date
+//            case home_team_logo
+//            case away_team_logo
+//            case event_time
+//            case home_team_key
+//            case event_home_team
+//            case away_team_key
+//            case event_away_team
+//            case event_final_result
+//            case league_name
+//            case league_season
+//            case event_stadium
+//            case event_ft_result
+//        
+//    }
 }

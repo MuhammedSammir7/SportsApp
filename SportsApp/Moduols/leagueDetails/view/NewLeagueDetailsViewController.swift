@@ -265,7 +265,7 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
                 cell.awayScore.text = String((events[indexPath.row].event_final_result).suffix(1))
                 
                 cell.live.isHidden = true
-                if events[indexPath.row].event_final_result == "-" {
+                if events[indexPath.row].event_ft_result == "" {
                     cell.live.isHidden = false
                 }
                 
