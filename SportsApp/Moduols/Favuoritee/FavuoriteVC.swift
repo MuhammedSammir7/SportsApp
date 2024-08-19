@@ -36,7 +36,7 @@ class FavuoriteVC: UIViewController {
         
         
         if isFavuorite == false {
-            favuoriteLbl.text = ""
+            favuoriteLbl.text = "Leagues"
             leagueViewModel = LeaguesViewModel(sport: sport, network: Network())
 
             leagueViewModel.bindResultToViewController = {

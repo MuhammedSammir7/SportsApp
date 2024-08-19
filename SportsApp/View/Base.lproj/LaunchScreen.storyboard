@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,18 +16,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Sports " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNO-Ju-pQi">
-                                <rect key="frame" x="124.66666666666669" y="415.66666666666669" width="144" height="46"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="38"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLq-fV-vAE">
+                                <rect key="frame" x="16" y="59" width="361" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basket" translatesAutoresizingMaskIntoConstraints="NO" id="Wq9-Se-fzH">
+                                <rect key="frame" x="55" y="366" width="322" height="230"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nadal" translatesAutoresizingMaskIntoConstraints="NO" id="JNQ-TR-ap8">
+                                <rect key="frame" x="16" y="615" width="305" height="180"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="manU" translatesAutoresizingMaskIntoConstraints="NO" id="2G2-KM-6XX">
+                                <rect key="frame" x="16" y="129" width="325" height="206"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
-                            <constraint firstItem="WNO-Ju-pQi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qaU-wG-F0A"/>
-                            <constraint firstItem="WNO-Ju-pQi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="rZB-Ga-FyS"/>
+                            <constraint firstItem="JNQ-TR-ap8" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.211268" id="2F1-em-Ysk"/>
+                            <constraint firstItem="JNQ-TR-ap8" firstAttribute="top" secondItem="Wq9-Se-fzH" secondAttribute="bottom" constant="19" id="2On-ub-ZHl"/>
+                            <constraint firstItem="Wq9-Se-fzH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="2kg-eO-iiy"/>
+                            <constraint firstItem="JNQ-TR-ap8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8wQ-Hk-u75"/>
+                            <constraint firstItem="Wq9-Se-fzH" firstAttribute="top" secondItem="2G2-KM-6XX" secondAttribute="bottom" constant="31" id="90j-BP-pPI"/>
+                            <constraint firstItem="2G2-KM-6XX" firstAttribute="top" secondItem="kLq-fV-vAE" secondAttribute="bottom" constant="40" id="Aug-q3-eFr"/>
+                            <constraint firstItem="Wq9-Se-fzH" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.819338" id="KYJ-fs-ALP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kLq-fV-vAE" secondAttribute="trailing" constant="16" id="OJI-lt-xPG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JNQ-TR-ap8" secondAttribute="trailing" constant="72" id="PoL-on-TCb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JNQ-TR-ap8" secondAttribute="bottom" constant="23" id="QMY-Dm-qfW"/>
+                            <constraint firstItem="kLq-fV-vAE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="V4I-nu-AfA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wq9-Se-fzH" secondAttribute="trailing" constant="16" id="XJK-4W-hwt"/>
+                            <constraint firstItem="2G2-KM-6XX" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.826972" id="eTV-sr-QJ7"/>
+                            <constraint firstItem="JNQ-TR-ap8" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.776081" id="fdw-ua-1mi"/>
+                            <constraint firstItem="2G2-KM-6XX" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.241784" id="h6f-cf-kxZ"/>
+                            <constraint firstItem="2G2-KM-6XX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n5n-PN-cbI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2G2-KM-6XX" secondAttribute="trailing" constant="52" id="nJs-9l-x7y"/>
+                            <constraint firstItem="kLq-fV-vAE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nOf-UK-dN6"/>
+                            <constraint firstItem="Wq9-Se-fzH" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.269953" id="r2H-5e-eUY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,8 +63,11 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="Nadal" width="1200" height="630"/>
+        <image name="basket" width="1801" height="1201"/>
+        <image name="manU" width="2048" height="1365"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
