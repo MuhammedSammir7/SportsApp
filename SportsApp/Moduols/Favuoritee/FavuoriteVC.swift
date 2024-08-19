@@ -112,19 +112,19 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
         }
         
         if isFavuorite == false {
-            let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+            let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "NewLeagueDetails") as! NewLeagueDetailsViewController
             
             LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
             
-            navigationController?.pushViewController(LeagueVC, animated: true)
+            present(LeagueVC, animated: true)
         }else {
-            let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+            let leagueVC = self.storyboard?.instantiateViewController(withIdentifier: "NewLeagueDetails") as! NewLeagueDetailsViewController
             
             let selected = favuoriteModel.favuoriteLeagues[indexPath.row]
             
             leagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(), sport: "football", league: selected)
             
-            navigationController?.pushViewController(leagueVC, animated: true)
+            present(leagueVC, animated: true)
         }}
         
         // checking connection alert

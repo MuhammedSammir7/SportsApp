@@ -10,9 +10,10 @@ import Foundation
 class LeagueDetailsViewModel {
     
     let nwServic : NetworkProtocol
+    let dbServic : PersistenceManager = PersistenceManager.shared
     
     let league : Leagues
-    
+    var isFavoutite : Bool = false
     
     let sport : String
     
@@ -39,9 +40,9 @@ class LeagueDetailsViewModel {
         self.sport = sport
         self.league = league
         getLeagueDetails()
-        let favourites = PersistenceManager.shared.getDataFromLocal()
+        let favourites = dbServic.getDataFromLocal()
         let favouriteLeague = favourites.filter {$0.league_key == self.league.league_key}
-//        if !(favouriteLeague.isEmpty) {self.isFavoutite = true}
+        if !(favouriteLeague.isEmpty) {self.isFavoutite = true}
     }
     
     func getLeagueDetails() {
@@ -75,14 +76,13 @@ class LeagueDetailsViewModel {
         let formattedEndingDate = endingDate.flatMap { formatter.string(from: $0) }
         
         return (formattedBeginnigDate!, formattedEndingDate!, formattedCurrentDate!)
-    
-    
-        
     }
-    func insertLeague(){
-        PersistenceManager.shared.insertLeague(leagu: self.league)
+    
+    func addToFavourites() {
+        dbServic.insertLeague(leagu: self.league)
     }
-    func deleteLeague(){
-        PersistenceManager.shared.removeFromFavourites(leagueKey: self.league.league_key)
+    
+    func removeFromFavourites() {
+        dbServic.removeFromFavourites(leagueKey: self.league.league_key)
     }
 }
