@@ -17,17 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sports" translatesAutoresizingMaskIntoConstraints="NO" id="LpW-36-QJt">
-                                <rect key="frame" x="49" y="268" width="295" height="341"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Sports 🏆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNO-Ju-pQi">
+                                <rect key="frame" x="103" y="415.66666666666669" width="187" height="46"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="38"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LpW-36-QJt" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RcB-Kd-bF1"/>
-                            <constraint firstItem="LpW-36-QJt" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.75" id="kyJ-mT-cGh"/>
-                            <constraint firstItem="LpW-36-QJt" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.4" id="lZP-nQ-l5J"/>
-                            <constraint firstItem="LpW-36-QJt" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ud6-Ai-MjW"/>
+                            <constraint firstItem="WNO-Ju-pQi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qaU-wG-F0A"/>
+                            <constraint firstItem="WNO-Ju-pQi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="rZB-Ga-FyS"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sports" width="612" height="407"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
