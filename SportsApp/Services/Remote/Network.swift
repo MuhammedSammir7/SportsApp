@@ -20,6 +20,7 @@ class Network: NetworkProtocol{
                     print("Error: Invalid URL")
                     return
                 }
+            print("\n\nurl is : \(url)\n")
         
         AF.request(url, method: .get).responseData { response in
                     switch response.result {

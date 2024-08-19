@@ -9,17 +9,13 @@ import Foundation
 
 class FavuoriteViewModel{
     var bindResultToViewController: (() -> Void) = {}
-    var favuoriteLeagues : [Leagues] = [] {
-        didSet {
-            bindResultToViewController()
-        }
-    }
+    var favuoriteLeagues : [Leagues] = []
    
     func getData(){
-        favuoriteLeagues = PersistenceManager.getDataFromLocal()
+        favuoriteLeagues = PersistenceManager.shared.getDataFromLocal()
     }
     func deleteLeague(index: Int){
-        PersistenceManager.deleteFromLeagues(key: index)
+        PersistenceManager.shared.removeFromFavourites(leagueKey: index)
         bindResultToViewController()
     }
 }
