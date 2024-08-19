@@ -19,13 +19,19 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
             self?.collectionView.reloadData()
         }
         
+        let notFoundCellNib = UINib(nibName: "NotFoundCollectionViewCell", bundle: nil)
+        collectionView.register(notFoundCellNib, forCellWithReuseIdentifier: "notFoundCell")
+        
+        let loadingCellNib = UINib(nibName: "LoadingCollectionViewCell", bundle: nil)
+        collectionView.register(loadingCellNib, forCellWithReuseIdentifier: "loadingCell")
+        
         self.title = self.viewModel?.team_name
         
         let layout = UICollectionViewCompositionalLayout { indexPath, enviroment in
             
             switch indexPath{
             case 0:
-                return self.drawSection(groupWidth: 1, groupHeight: 300, leading: 0 , trailing: 0, headerHeight: 0.1, isScrollingHorizontally: false)
+                return self.drawSection(groupWidth: 1, groupHeight: 300, leading: 0 , trailing: 0, headerHeight: 60, isScrollingHorizontally: false)
             case 1:
                 return self.drawSection(groupWidth: 1, groupHeight: 150, leading: 10 , trailing: 10, headerHeight: 0.1, isScrollingHorizontally: false)
             case 2:
@@ -74,11 +80,14 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         
         switch indexPath.section {
         case 0:
-            sectionHeaderView.SectionHeaderLabel.isHidden = true
+            sectionHeaderView.SectionHeaderLabel.isHidden = false
+            sectionHeaderView.SectionHeaderLabel.text = viewModel?.team_name
+            sectionHeaderView.SectionHeaderLabel.textAlignment = .center
         case 1:
             sectionHeaderView.SectionHeaderLabel.isHidden = true
         case 2:
             sectionHeaderView.SectionHeaderLabel.isHidden = false
+            sectionHeaderView.SectionHeaderLabel.textAlignment = .left
             sectionHeaderView.SectionHeaderLabel.text = "Players"
         default:
             break
@@ -101,7 +110,9 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        guard let team = viewModel?.team  else {return 1}
+        
+        return team.isEmpty ? 1 : 3
     }
 
 
@@ -122,6 +133,16 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         // Configure the cell
+        let notFoundCell = collectionView.dequeueReusableCell(withReuseIdentifier: "notFoundCell", for: indexPath) as! NotFoundCollectionViewCell
+        let loadingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingCollectionViewCell
+        
+        if viewModel?.team == nil {
+            return loadingCell
+        } else if (viewModel?.team)!.isEmpty {
+            notFoundCell.message.text = "No Team Details Found"
+            return notFoundCell
+        }
+        
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BadgeCell", for: indexPath) as! TeamBadgeCollectionViewCell

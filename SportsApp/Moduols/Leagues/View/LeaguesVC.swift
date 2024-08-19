@@ -60,7 +60,7 @@ extension LeaguesVC : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+        let LeagueVC = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! NewLeagueDetailsViewController
         
         LeagueVC.viewModel = LeagueDetailsViewModel(nwServic: Network(),sport: leagueViewModel.sport ?? "", league: leagueViewModel.leagues[indexPath.row])
         

@@ -8,6 +8,6 @@
 import UIKit
 
 class SectionHeaderCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var SectionHeaderLabel: UILabel!
     
+    @IBOutlet weak var SectionHeaderLabel: UILabel!
 }

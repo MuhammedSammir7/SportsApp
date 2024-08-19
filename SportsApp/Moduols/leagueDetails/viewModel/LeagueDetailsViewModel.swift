@@ -84,5 +84,4 @@ class LeagueDetailsViewModel {
     func removeFromFavourites() {
         PersistenceManager.deleteFromLeagues(key: self.league.league_key)
     }
-    
 }

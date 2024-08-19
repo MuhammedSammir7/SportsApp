@@ -111,6 +111,7 @@ class Network: NetworkProtocol{
                     
                 case .failure(let error):
                     print("Error: \(error)")
+                    handler([])
                 }
             }
     }
