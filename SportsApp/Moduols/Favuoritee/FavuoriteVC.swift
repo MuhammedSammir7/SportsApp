@@ -16,6 +16,7 @@ class FavuoriteVC: UIViewController {
     var sport : String?
     let reachabilityManager = NetworkReachabilityManager()
 
+    @IBOutlet weak var noDataImg: UIImageView!
     @IBOutlet weak var favuoriteLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,8 +33,6 @@ class FavuoriteVC: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        
-        
         
         
         if isFavuorite == false {
@@ -53,13 +52,27 @@ class FavuoriteVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         if (isFavuorite == true){
+            
             favuoriteLbl.text = "Favourite Leagues"
             favuoriteModel.bindResultToViewController = {
                 self.tableView.reloadData()
             }
+            print("\n\n\(favuoriteModel.favuoriteLeagues.count)\n\n")
             favuoriteModel.favuoriteLeagues.removeAll()
-            favuoriteModel.getData()
+            print("\n\n\(favuoriteModel.favuoriteLeagues.count)\n\n")
 
+            favuoriteModel.getData()
+            tableView.reloadData()
+
+            
+            print("\n\n\(favuoriteModel.favuoriteLeagues.count)\n\n")
+
+            
+            if favuoriteModel.favuoriteLeagues.count == 0 {
+                tableView.isHidden = true
+            }else{
+                tableView.isHidden = false
+            }
             
             LeaguesCell.makingAction = {
                 let alert = UIAlertController(title: "No Video!", message: "This league has no video.", preferredStyle: .alert)
@@ -67,6 +80,7 @@ class FavuoriteVC: UIViewController {
                 alert.addAction(ok)
                 self.present(alert, animated: true)
             }
+
         }
     }
     
@@ -113,7 +127,7 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
             navigationController?.pushViewController(leagueVC, animated: true)
         }}
         
-        // checing connection alert
+        // checking connection alert
     func showNoConnectionAlert() {
             let alert = UIAlertController(title: "No Connection", message: "You need an internet connection to view league details.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -127,10 +141,15 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
             let delete = UIContextualAction(style: .destructive, title: "delete") { action, view, completionHandler in
                 let alert = UIAlertController(title: "delete", message: "Are you sure you want to delete this league?", preferredStyle: .alert)
                 let yes = UIAlertAction(title: "Yes", style: .destructive) { action in
+                    self.favuoriteModel.deleteLeague(index: self.favuoriteModel.favuoriteLeagues[indexPath.row].league_key)
                     self.favuoriteModel.favuoriteLeagues.remove(at: indexPath.row)
-                    // call the delete function and pass the index to it to delete from the coreData
-                    self.favuoriteModel.deleteLeague(index: indexPath.row)
-                    tableView.reloadData()
+                    if self.favuoriteModel.favuoriteLeagues.count == 0 {
+                        tableView.isHidden = true
+                    }else{
+                        tableView.isHidden = false
+                    }
+                    self.tableView.reloadData()
+                    
                     completionHandler(true)
                 }
                 let cancle = UIAlertAction(title: "Cancle", style: .cancel)

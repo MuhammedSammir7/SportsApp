@@ -28,9 +28,9 @@ class LeagueDetailsViewController: UICollectionViewController {
         
         self.title = viewModel?.league.league_name
         
-        if (viewModel?.isFavoutite)! {
-            favouriteButton.image = UIImage(systemName: "heart.fill")
-        }
+//        if (viewModel?.isFavoutite)! {
+//            favouriteButton.image = UIImage(systemName: "heart.fill")
+//        }
         
         let cellNib = UINib(nibName: "UpComingCollectionViewCell", bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: "UpComingCell")
@@ -59,18 +59,41 @@ class LeagueDetailsViewController: UICollectionViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        updateFavouriteButton()
+    }
+    private func updateFavouriteButton() {
+        let isFavuorited = PersistenceManager.shared.isFavourited(leagueKey: viewModel?.league.league_key ?? 0)
+        if isFavuorited {
+            favouriteButton.image = UIImage(systemName: "heart.fill")
+        } else {
+            favouriteButton.image = UIImage(systemName: "heart")
+        }
+    }
     
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
     
+    
     @IBAction func addOrRemoveFromFavourites(_ sender: Any) {
-        if (viewModel?.isFavoutite)! {
-            favouriteButton.image = UIImage(systemName: "heart")
-            viewModel?.removeFromFavourites()
+        let isFavuorited = PersistenceManager.shared.isFavourited(leagueKey: viewModel?.league.league_key ?? 0)
             
-        } else {
-            favouriteButton.image = UIImage(systemName: "heart.fill")
-            viewModel?.addToFavourites()
-        }
+            if isFavuorited {
+                let alert = UIAlertController(title: "delete", message: "Are you sure you want to delete this league?", preferredStyle: .alert)
+                let yes = UIAlertAction(title: "Yes", style: .destructive) { action in
+                    self.viewModel?.deleteLeague()
+                    self.favouriteButton.image = UIImage(systemName: "heart")
+                }
+                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
+                alert.addAction(yes)
+                alert.addAction(cancle)
+                self.present(alert, animated: true)
+              
+            } else {
+                viewModel?.insertLeague()
+                favouriteButton.image = UIImage(systemName: "heart.fill")
+            }
+        
+
     }
     
     func drawHeader() -> NSCollectionLayoutBoundarySupplementaryItem{
