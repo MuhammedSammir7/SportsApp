@@ -138,6 +138,7 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if isFavuorite{
             let delete = UIContextualAction(style: .destructive, title: "delete") { action, view, completionHandler in
                 let alert = UIAlertController(title: "delete", message: "Are you sure you want to delete this league?", preferredStyle: .alert)
                 let yes = UIAlertAction(title: "Yes", style: .destructive) { action in
@@ -160,5 +161,7 @@ extension FavuoriteVC : UITableViewDelegate,UITableViewDataSource{
             }
             return UISwipeActionsConfiguration(actions: [delete])
         }
+        return nil
+    }
     }
 
