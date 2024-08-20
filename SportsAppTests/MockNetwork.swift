@@ -24,19 +24,19 @@ class MockNetwork: NetworkProtocol {
     
     }
     
-    func getEvents(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Events]?) -> Void) {
+    func getEvents(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Events]) -> Void) {
             if shouldReturnError {
-                handler(nil)
+                handler([])
             } else {
-                handler(eventsResponse)
+                handler(eventsResponse ?? [])
             }
         }
         
-        func getLeagueTeams(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([LeagueTeams]?) -> Void) {
+        func getLeagueTeams(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([LeagueTeams]) -> Void) {
             if shouldReturnError {
-                handler(nil)
+                handler([])
             } else {
-                handler(leagueTeamsResponse)
+                handler(leagueTeamsResponse ?? [])
             }
         }
         

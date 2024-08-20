@@ -20,9 +20,9 @@ struct LeagueTeams: Codable, Hashable {
 //        players = try container.decode([Players].self, forKey: .players)
 //    }
     
-    private enum CodingKeys: String, CodingKey {
-            case home_team_logo
-            case home_team_key
-            case event_home_team
-    }
+//    private enum CodingKeys: String, CodingKey {
+//            case home_team_logo
+//            case home_team_key
+//            case event_home_team
+//    }
 }

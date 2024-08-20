@@ -136,7 +136,10 @@ class TeamDetailsCollectionViewController: UICollectionViewController, UICollect
         let notFoundCell = collectionView.dequeueReusableCell(withReuseIdentifier: "notFoundCell", for: indexPath) as! NotFoundCollectionViewCell
         let loadingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingCollectionViewCell
         
-        if viewModel?.team == nil {
+        if !(viewModel?.reachabilityManager?.isReachable)! {
+            notFoundCell.message.text = "No Network Connection 🛜"
+            return notFoundCell
+        } else if viewModel?.team == nil {
             return loadingCell
         } else if (viewModel?.team)!.isEmpty {
             notFoundCell.message.text = "No Team Details Found"

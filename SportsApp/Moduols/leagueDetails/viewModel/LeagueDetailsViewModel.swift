@@ -50,7 +50,7 @@ class LeagueDetailsViewModel {
         nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().currentDatePluse, toDate: getFormattedDates().endingDate) { [weak self] events in
             
             var newEvents = events
-            newEvents?.sort{ (self?.getFormattedDates(dateSting: $0.event_date).eventDate)!  < (self?.getFormattedDates(dateSting: $1.event_date).eventDate)!}
+            newEvents.sort{ (self?.getFormattedDates(dateSting: $0.event_date).eventDate)!  < (self?.getFormattedDates(dateSting: $1.event_date).eventDate)!}
             
             self?.upcomingEvents = newEvents
         }
