@@ -49,7 +49,7 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
             case 0:
                 return self.drawSection(groupWidth: 1, groupHeight: 250, isScrollingHorizontally: true)
             case 1:
-                return self.drawSection(groupWidth: 1, groupHeight: 140, isScrollingHorizontally: false)
+                return self.drawSection(groupWidth: 1, groupHeight: 145, isScrollingHorizontally: false)
             case 2:
                 return self.drawSection(groupWidth: viewModel?.LeagueTeams?.count == 0 ? 1 : 0.2, groupHeight: 78, isScrollingHorizontally: true)
             default:
@@ -265,7 +265,7 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
                 cell.awayScore.text = String((events[indexPath.row].event_final_result).suffix(1))
                 
                 cell.live.isHidden = true
-                if events[indexPath.row].event_ft_result == "" {
+                if events[indexPath.row].event_live == "1" {
                     cell.live.isHidden = false
                 }
                 

@@ -56,7 +56,27 @@ class LeagueDetailsViewModel {
         }
         // Latest
         nwServic.getEvents(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().currentDate) { [weak self] events in
-            self?.latestEvents = events
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            
+            let currentHour = Calendar.current.component(.hour, from: Date())
+            
+            let newEvents = events.filter { event in
+                if event.event_date == self?.getFormattedDates().currentDate{
+                    if let eventTime = formatter.date(from: event.event_time) {
+                        
+                        let eventHour = Calendar.current.component(.hour, from: eventTime)
+                        
+                        if eventHour > currentHour {
+                            return false
+                        }
+                    }
+                }
+                return true
+            }
+            
+            self?.latestEvents = newEvents
         }
         // Teams
         nwServic.getLeagueTeams(sport: self.sport, league_key: self.league.league_key, fromDate: getFormattedDates().beginnigDate, toDate: getFormattedDates().endingDate) { [weak self] teams in
@@ -72,8 +92,6 @@ class LeagueDetailsViewModel {
         let endingDate = calendar.date(byAdding: .year, value: 1, to: Date())
         let currentDate = calendar.date(byAdding: .hour, value: 0, to: Date())
         let currentDatePluse = calendar.date(byAdding: .hour, value: 3, to: Date())
-        
-        
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

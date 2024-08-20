@@ -22,6 +22,7 @@ struct Events: Codable {
     var league_season : String
     var event_stadium : String
     var event_ft_result : String
+    var event_live : String
     
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
