@@ -22,7 +22,7 @@ final class LeagueDetailsViewModelTests: XCTestCase {
         
         league = Leagues(league_key: 159, league_name: "League 1", country_key: 4, country_name: "Egypt")
         
-        event = Events(event_key: 1, event_date: "2025-05-18", event_time: "14:30", home_team_key: 20, event_home_team: "Home team", away_team_key: 15, event_away_team: "Away Team", event_final_result: "3 - 0", league_name: "League 1", league_season: "2025/ / 2024", event_stadium: "", event_ft_result: "3 - 0")
+        event = Events(event_key: 1, event_date: "2025-05-18", event_time: "14:30", home_team_key: 20, event_home_team: "Home team", away_team_key: 15, event_away_team: "Away Team", event_final_result: "3 - 0", league_name: "League 1", league_season: "2025/ / 2024", event_stadium: "", event_ft_result: "3 - 0", event_live: "0")
         
         team = LeagueTeams(home_team_key: 1, event_home_team: "Zamalek")
         

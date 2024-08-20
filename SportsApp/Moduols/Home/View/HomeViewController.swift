@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,20 +33,23 @@ class HomeViewController: UIViewController {
                         collectionView.isHidden = false
                         //uncomment this
                         //ImageView.isHidden = true
+                        if presentedViewController is UIAlertController {
+                            dismiss(animated: true)
+                        }
                     case .notReachable:
                         print("Network is not reachable")
-                        let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
-                        let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
-                        let tryAgain = UIAlertAction(title: "Try Again", style: .default) { action in
-                            
-                                print("Network is Not reachable")
-                                self.present(alert, animated: true)
-                            
-                            
-                            }
-                        alert.addAction(cancle)
-                        alert.addAction(tryAgain)
-                        self.present(alert, animated: true)
+//                        let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
+//                        let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
+//                        let tryAgain = UIAlertAction(title: "Try Again", style: .default) { action in
+//                            
+//                                print("Network is Not reachable")
+//                                self.present(alert, animated: true)
+//                            
+//                            
+//                            }
+//                        alert.addAction(cancle)
+//                        alert.addAction(tryAgain)
+//                        self.present(alert, animated: true)
                         collectionView.isHidden = true
                         //uncomment this
                         //ImageView.isHidden = false
@@ -68,17 +70,20 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
         cell.sportName.text = viewModel.sports[indexPath.row].name
         cell.sportImage.image = UIImage(named: viewModel.sports[indexPath.row].image)
         
+        cell.sportImage.layer.cornerRadius = min(cell.frame.width, cell.frame.height) / 8
+        cell.sportImage.layer.masksToBounds = true
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width * 0.49, height: self.view.frame.height * 0.15)
+        return CGSize(width: self.view.frame.width * 0.5, height: self.view.frame.height * 0.15)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0.1
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

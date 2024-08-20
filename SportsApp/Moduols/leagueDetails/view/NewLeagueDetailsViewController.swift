@@ -189,7 +189,7 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
                 return loadingCell
             }
             
-            cell.layer.cornerRadius = cell.frame.width / 2
+            cell.layer.cornerRadius = min(cell.frame.width, cell.frame.height) / 2
             cell.layer.masksToBounds = true
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 2.0
@@ -291,11 +291,15 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
             cell.backgoundImage.isHidden = false
             
         }
-        cell.layer.cornerRadius = cell.frame.width / 8
+        cell.layer.cornerRadius = indexPath.section == 0 ? min(cell.frame.width, cell.frame.height) / 4 : min(cell.frame.width, cell.frame.height) / 2
         cell.layer.masksToBounds = true
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 5.0
         
+        cell.layer.shadowRadius = 12
+        cell.layer.shadowOpacity = 0.4
+        cell.layer.shadowOffset = CGSize(width: 20, height: 20)
+        cell.layer.shadowColor = UIColor.gray.cgColor
 
         return cell
     }

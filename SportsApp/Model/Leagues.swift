@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Leagues: Decodable {
+struct Leagues: Decodable{
     var league_key : Int
     var league_name : String
     var country_key : Int
