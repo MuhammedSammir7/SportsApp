@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkProtocol{
-    func getData<T>(path: String, sport: String, handler: @escaping (T) -> Void) where T : Decodable
+    func getData<T>(path: String, sport: String, handler: @escaping (T?) -> Void) where T : Decodable
     
     func getEvents(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Events]?) -> Void)
     
