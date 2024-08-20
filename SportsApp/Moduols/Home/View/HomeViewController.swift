@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
     let viewModel = SportsViewModel()
     let reachabilityManager = NetworkReachabilityManager()
         var isConnected: Bool {
-            return reachabilityManager?.isReachable ?? false
+            return reachabilityManager?.isReachable ?? true
         }
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,17 +22,31 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         reachabilityManager?.startListening(onUpdatePerforming: { [self] status in
                     switch status {
                     case .reachable(.ethernetOrWiFi), .reachable(.cellular):
                         print("Network is reachable")
+                        collectionView.isHidden = false
                         //uncomment this
                         //ImageView.isHidden = true
                     case .notReachable:
                         print("Network is not reachable")
                         let alert = UIAlertController(title: "No Connection!", message: "Cheack your internet connection and try again.", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "Ok", style: .cancel,handler: nil)
-                        alert.addAction(ok)
+                        let cancle = UIAlertAction(title: "Cancle", style: .cancel,handler: nil)
+                        let tryAgain = UIAlertAction(title: "Try Again", style: .default) { action in
+                            
+                                print("Network is Not reachable")
+                                self.present(alert, animated: true)
+                            
+                            
+                            }
+                        alert.addAction(cancle)
+                        alert.addAction(tryAgain)
                         self.present(alert, animated: true)
                         collectionView.isHidden = true
                         //uncomment this
@@ -41,9 +55,7 @@ class HomeViewController: UIViewController {
                         print("Network status is unknown")
                     }
                 })
-        
     }
-
 
 }
 
