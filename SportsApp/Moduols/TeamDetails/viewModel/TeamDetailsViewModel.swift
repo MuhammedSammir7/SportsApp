@@ -17,6 +17,7 @@ class TeamDetailsViewModel {
     let team_name: String
     var bindResultToViewController: (() -> Void) = {}
     
+    let reachabilityManager = NetworkReachabilityManager()
 
     var team : [Teams]? {
         didSet {

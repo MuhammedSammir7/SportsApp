@@ -13,11 +13,14 @@ final class TeamDetailsViewModelTests: XCTestCase {
     
     var teamDetailsVM : TeamDetailsViewModel?
     var team : Teams?
+    var network: Network?
     
     override func setUpWithError() throws {
-        teamDetailsVM = TeamDetailsViewModel(nwServic: Network(), sport: "football", team_key: 12, team_name: "Egypt")
+        teamDetailsVM = TeamDetailsViewModel(nwServic: MockNetwork(), sport: "football", team_key: 12, team_name: "Egypt")
         
         team = Teams(team_key: 155, team_name: "Tottenham")
+        
+        network = Network()
         
     }
     

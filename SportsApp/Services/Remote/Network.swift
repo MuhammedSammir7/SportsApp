@@ -42,7 +42,7 @@ class Network: NetworkProtocol{
                 }
     }
     
-    func getEvents(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Events]?) -> Void) {
+    func getEvents(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([Events]) -> Void) {
         
         let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
         let sport = sport
@@ -65,7 +65,7 @@ class Network: NetworkProtocol{
             }
     }
     
-    func getLeagueTeams(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([LeagueTeams]?) -> Void) {
+    func getLeagueTeams(sport: String, league_key: Int, fromDate: String, toDate: String, handler: @escaping ([LeagueTeams]) -> Void) {
         
         let apiKey = "1d1ff13cb74815bcfc1b274dbeddfb5c6813a19f743dade1cd76743e9172b403"
         let sport = sport
