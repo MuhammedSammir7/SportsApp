@@ -20,6 +20,13 @@ class LeaguesVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         leagueViewModel = LeaguesViewModel(sport: sport, network: Network())
+        
+        LeaguesCell.makingAction = {
+            let alert = UIAlertController(title: "No Video!", message: "This league has no video.", preferredStyle: .alert)
+             let ok = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(ok)
+            self.present(alert, animated: true)
+        }
 
         leagueViewModel.bindResultToViewController = {
                     self.tableView.reloadData()
@@ -33,7 +40,6 @@ class LeaguesVC: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRight(_:)))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
-
         
     }
     // to dismiss the screen using swiper
