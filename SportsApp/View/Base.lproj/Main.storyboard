@@ -244,7 +244,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yaL-Hb-QQm">
-                                <rect key="frame" x="0.0" y="100.33333333333331" width="393" height="751.66666666666674"/>
+                                <rect key="frame" x="0.0" y="105.33333333333331" width="393" height="746.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KoU-Vy-ees">
                                     <size key="itemSize" width="361" height="128"/>
@@ -279,17 +279,17 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team1" translatesAutoresizingMaskIntoConstraints="NO" id="P2L-Pt-F12">
-                                                    <rect key="frame" x="5" y="5" width="319" height="213"/>
+                                                    <rect key="frame" x="6" y="6" width="317" height="211"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="P2L-Pt-F12" firstAttribute="centerX" secondItem="o3o-1Q-COt" secondAttribute="centerX" id="4JA-YW-097"/>
-                                                <constraint firstAttribute="bottom" secondItem="P2L-Pt-F12" secondAttribute="bottom" constant="5" id="4Qk-cf-wcq"/>
-                                                <constraint firstItem="P2L-Pt-F12" firstAttribute="top" secondItem="o3o-1Q-COt" secondAttribute="top" constant="5" id="KE4-vi-Pjl"/>
-                                                <constraint firstAttribute="trailing" secondItem="P2L-Pt-F12" secondAttribute="trailing" constant="5" id="lh1-UG-89i"/>
+                                                <constraint firstAttribute="bottom" secondItem="P2L-Pt-F12" secondAttribute="bottom" constant="6" id="4Qk-cf-wcq"/>
+                                                <constraint firstItem="P2L-Pt-F12" firstAttribute="top" secondItem="o3o-1Q-COt" secondAttribute="top" constant="6" id="KE4-vi-Pjl"/>
+                                                <constraint firstAttribute="trailing" secondItem="P2L-Pt-F12" secondAttribute="trailing" constant="6" id="lh1-UG-89i"/>
                                                 <constraint firstItem="P2L-Pt-F12" firstAttribute="centerY" secondItem="o3o-1Q-COt" secondAttribute="centerY" id="n6o-wC-0Ln"/>
-                                                <constraint firstItem="P2L-Pt-F12" firstAttribute="leading" secondItem="o3o-1Q-COt" secondAttribute="leading" constant="5" id="vQd-cE-FUq"/>
+                                                <constraint firstItem="P2L-Pt-F12" firstAttribute="leading" secondItem="o3o-1Q-COt" secondAttribute="leading" constant="6" id="vQd-cE-FUq"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -312,8 +312,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="RNN-RZ-67l" firstAttribute="leading" secondItem="aTx-Yn-Yku" secondAttribute="leadingMargin" constant="25" id="0MO-yQ-sen"/>
                                         <constraint firstItem="RNN-RZ-67l" firstAttribute="centerY" secondItem="aTx-Yn-Yku" secondAttribute="centerY" id="XH3-V8-Va0"/>
-                                        <constraint firstItem="RNN-RZ-67l" firstAttribute="leading" secondItem="aTx-Yn-Yku" secondAttribute="leadingMargin" constant="25" id="ciq-aF-QEj"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="SectionHeaderLabel" destination="RNN-RZ-67l" id="qfo-c1-oNd"/>
@@ -321,13 +321,13 @@
                                 </collectionReusableView>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMH-eE-g2o">
-                                <rect key="frame" x="59" y="59.000000000000007" width="275" height="26.333333333333336"/>
+                                <rect key="frame" x="59" y="64" width="275" height="26.333333333333329"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fI-CP-RZ7">
-                                <rect key="frame" x="0.0" y="54.666666666666657" width="51" height="35"/>
+                                <rect key="frame" x="0.0" y="59.666666666666657" width="51" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward" catalog="system"/>
                                 <connections>
@@ -335,7 +335,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRK-y4-vVK">
-                                <rect key="frame" x="342" y="54.666666666666657" width="41" height="35"/>
+                                <rect key="frame" x="342" y="59.666666666666657" width="41" height="35"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
@@ -357,7 +357,7 @@
                             <constraint firstItem="XRK-y4-vVK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EMH-eE-g2o" secondAttribute="trailing" constant="8" symbolic="YES" id="bwW-ow-5Tx"/>
                             <constraint firstItem="yaL-Hb-QQm" firstAttribute="top" secondItem="EMH-eE-g2o" secondAttribute="bottom" constant="15" id="dfU-eP-VI4"/>
                             <constraint firstItem="RZ3-Wm-5C5" firstAttribute="trailing" secondItem="XRK-y4-vVK" secondAttribute="trailing" constant="10" id="fFn-0l-1ZN"/>
-                            <constraint firstItem="EMH-eE-g2o" firstAttribute="top" secondItem="RZ3-Wm-5C5" secondAttribute="top" id="g6m-Kd-lHI"/>
+                            <constraint firstItem="EMH-eE-g2o" firstAttribute="top" secondItem="RZ3-Wm-5C5" secondAttribute="top" constant="5" id="g6m-Kd-lHI"/>
                             <constraint firstItem="EMH-eE-g2o" firstAttribute="centerX" secondItem="RZ3-Wm-5C5" secondAttribute="centerX" id="nFW-Dx-ZNL"/>
                             <constraint firstItem="yaL-Hb-QQm" firstAttribute="leading" secondItem="RZ3-Wm-5C5" secondAttribute="leading" id="yzt-ku-Hc2"/>
                         </constraints>

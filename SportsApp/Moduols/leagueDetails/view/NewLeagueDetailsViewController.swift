@@ -291,13 +291,13 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
             cell.backgoundImage.isHidden = false
             
         }
-        cell.layer.cornerRadius = indexPath.section == 0 ? min(cell.frame.width, cell.frame.height) / 4 : min(cell.frame.width, cell.frame.height) / 2
+        cell.layer.cornerRadius = indexPath.section == 0 ? min(cell.frame.width, cell.frame.height) / 4 : min(cell.frame.width, cell.frame.height) / 2.5
         cell.layer.masksToBounds = true
         cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.borderWidth = 5.0
+        cell.layer.borderWidth = indexPath.section == 0 ? 5.0 : 3.0
         
         cell.layer.shadowRadius = 12
-        cell.layer.shadowOpacity = 0.4
+        cell.layer.shadowOpacity = 0.28
         cell.layer.shadowOffset = CGSize(width: 20, height: 20)
         cell.layer.shadowColor = UIColor.gray.cgColor
 
