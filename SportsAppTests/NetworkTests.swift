@@ -24,6 +24,39 @@ final class NetworkTests: XCTestCase {
     override func tearDownWithError() throws {
         network = nil
     }
+    func testGetDataNotNil() {
+        // Given
+        let expectation = self.expectation(description: "Data fetch succeeded")
+        let path = "Leagues"
+        let sport = "football"
+
+        // When
+        network?.getData(path: path, sport: sport) { (response: LeaguesResponse?) in
+            XCTAssertNotNil(response)
+            
+            expectation.fulfill()
+        }
+
+        // Then
+        waitForExpectations(timeout: 3)
+    }
+
+    func testGetDataSuccess() {
+        // Given
+        let expectation = self.expectation(description: "Data fetch succeeded")
+        let path = "Leagues"
+        let sport = "football"
+
+        // When
+        network?.getData(path: path, sport: sport) { (response: LeaguesResponse?) in
+            XCTAssertEqual(response?.result.count, 917) // Adjust this based on the expected mock response count
+            expectation.fulfill()
+        }
+
+        // Then
+        waitForExpectations(timeout: 3)
+    }
+
     
     func testGetEventsSuccess() {
         // Given
