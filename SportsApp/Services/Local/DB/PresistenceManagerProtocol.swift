@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FavuoriteDBProtocol {
-    static func insertLeague(leagu: Leagues)
-    static func getDataFromLocal() -> [Leagues]
-    static func deleteFromLeagues(key: Int)
+    func insertLeague(leagu: Leagues)
+    func getDataFromLocal() -> [Leagues]
+    func removeFromFavourites(leagueKey: Int)
 }

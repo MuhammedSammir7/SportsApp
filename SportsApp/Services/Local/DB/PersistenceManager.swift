@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class PersistenceManager{
+class PersistenceManager : FavuoriteDBProtocol {
    
     var managedContext: NSManagedObjectContext!
 
