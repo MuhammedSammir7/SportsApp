@@ -69,7 +69,7 @@ class NewLeagueDetailsViewController: UIViewController, UICollectionViewDelegate
                 self.favouriteButton.imageView!.image = UIImage(systemName: "heart")
                 self.viewModel?.removeFromFavourites()
                 self.viewModel?.isFavoutite = false
-                self.collectionView.reloadData()
+                //self.collectionView.reloadData()
             }))
             alert.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
             self.present(alert, animated: true)

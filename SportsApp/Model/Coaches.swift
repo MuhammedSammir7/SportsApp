@@ -17,10 +17,10 @@ struct Coaches: Codable{
 //        player_key = try container.decode(Int.self, forKey: .player_key)
 //    }
     
-    private enum CodingKeys: String, CodingKey {
-            case coach_name
-            case coach_country
-            case coach_age
-            
-    }
+//    private enum CodingKeys: String, CodingKey {
+//            case coach_name
+//            case coach_country
+//            case coach_age
+//            
+//    }
 }
