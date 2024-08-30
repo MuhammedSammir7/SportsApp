@@ -2,7 +2,7 @@
 
  - Get all your sport needs in one place :<br>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f0571b77-9f5f-4b9c-8b15-792d00e122fa)" width="400" height="800"/>
+  <img src="https://github.com/user-attachments/assets/f0571b77-9f5f-4b9c-8b15-792d00e122fa" width="400" height="800"/>
 </p>
 
 <br>
